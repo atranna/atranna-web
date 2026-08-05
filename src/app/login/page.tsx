@@ -18,12 +18,13 @@ async function sendLoginRequest() {
     body: JSON.stringify({ username, password }),
   });
   if (!response.ok) {
-    console.error("Login failed");
+    document.getElementById("loginResponse")!.textContent =
+      "Login failed: " + response.statusText;
     return;
   }
   const data = await response.json();
   localStorage.setItem("jwtToken", data.token);
-  console.log("Login successful");
+  document.getElementById("loginResponse")!.textContent = "Login successful";
 }
 
 export default function Login() {
@@ -33,6 +34,7 @@ export default function Login() {
       <input type="text" placeholder="Username" />
       <input type="password" placeholder="Password" />
       <button onClick={sendLoginRequest}>Login</button>
+      <p id="loginResponse"></p>
     </>
   );
 }
