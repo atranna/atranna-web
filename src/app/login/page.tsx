@@ -24,7 +24,23 @@ async function sendLoginRequest() {
   }
   const data = await response.json();
   localStorage.setItem("jwtToken", data.token);
-  document.getElementById("loginResponse")!.textContent = "Login successful";
+
+  // Test the token by making request to /api/v1/users/me
+  const meResponse = await fetch("http://localhost:8080/api/v1/users/me", {
+    headers: {
+      Authorization: `Bearer ${data.token}`,
+    },
+  });
+  if (!meResponse.ok) {
+    document.getElementById("loginResponse")!.textContent =
+      "Token validation failed: " + meResponse.statusText;
+    return;
+  }
+
+  const meData = await meResponse.json();
+
+  document.getElementById("loginResponse")!.textContent =
+    "Successfully logged in as: " + meData.username;
 }
 
 export default function Login() {
