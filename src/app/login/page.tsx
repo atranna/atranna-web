@@ -1,19 +1,18 @@
 "use client";
 
 import { login } from "@/api/auth";
-import { usersMe } from "@/api/users";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Login() {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginResponse, setLoginResponse] = useState("");
 
   async function sendLoginRequest() {
     const token = await login(username, password);
     localStorage.setItem("jwtToken", token);
-    const userData = await usersMe();
-    setLoginResponse(`Successfully logged in as: ${userData.username}`);
+    router.replace("/me");
   }
 
   return (
@@ -43,8 +42,6 @@ export default function Login() {
         >
           Login
         </button>
-
-        <p className="text-lime-500">{loginResponse}</p>
       </div>
     </div>
   );
