@@ -10,32 +10,42 @@ export default function Login() {
   const [loginResponse, setLoginResponse] = useState("");
 
   async function sendLoginRequest() {
-    await login(username, password);
+    const token = await login(username, password);
+    localStorage.setItem("jwtToken", token);
     const userData = await usersMe();
     setLoginResponse(`Successfully logged in as: ${userData.username}`);
   }
 
   return (
-    <>
-      <h1>Login</h1>
+    <div className="min-h-screen flex items-center justify-center">
+      <div>
+        <h1 className="text-2xl font-bold mb-4">Login</h1>
 
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+        <input
+          className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button onClick={sendLoginRequest}>Login</button>
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={sendLoginRequest}
+        >
+          Login
+        </button>
 
-      <p>{loginResponse}</p>
-    </>
+        <p className="text-lime-500">{loginResponse}</p>
+      </div>
+    </div>
   );
 }

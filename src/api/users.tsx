@@ -16,6 +16,5 @@ export async function usersMe() {
   }
 
   const data = await response.json();
-  localStorage.setItem("jwtToken", data.token);
   return data;
 }
