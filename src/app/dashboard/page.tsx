@@ -5,6 +5,7 @@ import { Sidebar } from "@/lib/page-components/sidebar";
 import { useEffect, useState } from "react";
 import { H1 } from "@/lib/page-components/headings";
 import { getDevices } from "@/api/devices";
+import Link from "next/link";
 
 export default function Dashboard() {
   const [username, setUsername] = useState("");
@@ -43,12 +44,14 @@ export default function Dashboard() {
 
         <section className="p-6">
           <H1>Dashboard</H1>
-          <div className="mt-6 max-w-xs border border-black bg-gray-200 p-5 ">
-            <h2 className="text-xl">Devices</h2>
-            <p className="mt-3 text-3xl">
-              {deviceCount === 0 ? "No devices found." : `${deviceCount}`}
-            </p>
-          </div>
+          <Link href="/devices">
+            <div className="mt-6 max-w-xs border border-black bg-gray-200 p-5 ">
+              <h2 className="text-xl">Devices</h2>
+              <p className="mt-3 text-3xl">
+                {deviceCount === 0 ? "No devices found." : `${deviceCount}`}
+              </p>
+            </div>
+          </Link>
         </section>
       </main>
     </div>
