@@ -13,7 +13,7 @@ export default function Me() {
       const userData = await usersMe();
       setUsername(userData.username);
       setEmail(userData.email);
-      setDisplayname(userData.displayname);
+      setDisplayname(userData.display_name);
     }
     fetchUserData();
   }, []);
