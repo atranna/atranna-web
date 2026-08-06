@@ -4,10 +4,13 @@ import { usersMe } from "@/api/users";
 import { Sidebar } from "@/lib/page-components/sidebar";
 import { useEffect, useState } from "react";
 import { H1 } from "@/lib/page-components/headings";
+import { getDevices } from "@/api/devices";
 
 export default function Dashboard() {
   const [username, setUsername] = useState("");
   const [displayName, setDisplayName] = useState("");
+
+  const [deviceCount, setDeviceCount] = useState(0);
 
   useEffect(() => {
     async function fetchUserData() {
@@ -17,9 +20,19 @@ export default function Dashboard() {
       setDisplayName(userData.display_name);
     }
 
-    fetchUserData();
-  }, []);
+    async function fetchDevices() {
+      const response = await getDevices();
+      const devices = await response.json();
+      console.log("Devices fetched:", devices);
+      for (const device of devices) {
+        console.log(`Device: ${device.name}`);
+      }
+      setDeviceCount(devices.length);
+    }
 
+    fetchUserData();
+    fetchDevices();
+  }, []);
   const preferredName = displayName || username || "N/A";
 
   return (
@@ -30,6 +43,12 @@ export default function Dashboard() {
 
         <section className="p-6">
           <H1>Dashboard</H1>
+          <div className="mt-6 max-w-xs rounded-2xl border border-black bg-gray-200 p-5 shadow-sm">
+            <h2 className="text-xl">Devices</h2>
+            <p className="mt-3 text-3xl">
+              {deviceCount === 0 ? "No devices found." : `${deviceCount}`}
+            </p>
+          </div>
         </section>
       </main>
     </div>
