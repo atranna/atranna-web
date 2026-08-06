@@ -11,6 +11,11 @@ import {
   Box,
   Server,
   EthernetPort,
+  Network,
+  Cable,
+  Scroll,
+  Shield,
+  LayoutDashboard,
 } from "lucide-react";
 
 type NavItemProps = {
@@ -75,17 +80,16 @@ export default function Dashboard() {
         <div className="p-3">
           <h3 className="text-center text-2xl font-bold">ATRANNA</h3>
 
-          <ul>
+          <ul className="mt-4">
+            <NavItem
+              label="Dashboard"
+              href="/dashboard"
+              icon={LayoutDashboard}
+            />
             <NavSection title="ORGANIZATION" icon={Building2}>
               <NavItem label="Users" href="/users" icon={Users} />
-
-              <NavItem label="Roles" href="/roles" icon={UserShield} />
-
-              <NavItem
-                label="Permissions"
-                href="/permissions"
-                icon={UserShield}
-              />
+              <NavItem label="Roles" href="/roles" icon={Shield} />
+              <NavItem label="Permissions" href="/permissions" icon={Scroll} />
             </NavSection>
 
             <NavSection title="RESOURCES" icon={Box}>
@@ -96,6 +100,11 @@ export default function Dashboard() {
                 href="/interfaces"
                 icon={EthernetPort}
               />
+            </NavSection>
+
+            <NavSection title="NETWORK" icon={Network}>
+              <NavItem label="Networks" href="/networks" icon={Network} />
+              <NavItem label="Connections" href="/connections" icon={Cable} />
             </NavSection>
           </ul>
         </div>
