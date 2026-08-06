@@ -44,14 +44,14 @@ export default function Dashboard() {
 
         <section className="p-6">
           <H1>Dashboard</H1>
-          <Link href="/devices">
-            <div className="mt-6 max-w-xs border border-black bg-gray-200 p-5 ">
+          <div className="mt-6 max-w-xs border border-black bg-gray-200 p-5 ">
+            <Link href="/devices">
               <h2 className="text-xl">Devices</h2>
               <p className="mt-3 text-3xl">
                 {deviceCount === 0 ? "No devices found." : `${deviceCount}`}
               </p>
-            </div>
-          </Link>
+            </Link>
+          </div>
         </section>
       </main>
     </div>
