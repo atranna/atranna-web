@@ -8,10 +8,13 @@ export async function GET() {
       "http://localhost:8080",
   };
 
-  return new Response(JSON.stringify(runtimeConfig), {
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "no-store",
+  return new Response(
+    `window.__ATRANNA_RUNTIME_CONFIG__ = ${JSON.stringify(runtimeConfig)};`,
+    {
+      headers: {
+        "Content-Type": "application/javascript; charset=utf-8",
+        "Cache-Control": "no-store",
+      },
     },
-  });
+  );
 }
