@@ -43,7 +43,7 @@ export default function Dashboard() {
 
         <section className="p-6">
           <H1>Dashboard</H1>
-          <div className="mt-6 max-w-xs rounded-2xl border border-black bg-gray-200 p-5 shadow-sm">
+          <div className="mt-6 max-w-xs border border-black bg-gray-200 p-5 ">
             <h2 className="text-xl">Devices</h2>
             <p className="mt-3 text-3xl">
               {deviceCount === 0 ? "No devices found." : `${deviceCount}`}

@@ -18,3 +18,22 @@ export async function usersMe() {
   const data = await response.json();
   return data;
 }
+
+export async function getAllUsers() {
+  const jwtToken = localStorage.getItem("jwtToken");
+  const apiUrl = getRuntimeApiUrl();
+  const usersEndpoint = `${apiUrl}/api/v1/users`;
+
+  const response = await fetch(usersEndpoint, {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch users: " + response.statusText);
+  }
+
+  const data = await response.json();
+  return data;
+}
