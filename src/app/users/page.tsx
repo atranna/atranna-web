@@ -5,10 +5,17 @@ import { Sidebar } from "@/lib/page-components/sidebar";
 import { useEffect, useState } from "react";
 import { H1 } from "@/lib/page-components/headings";
 
+type UserRow = {
+  id: number;
+  display_name: string | null;
+  email: string | null;
+  username: string;
+};
+
 export default function Users() {
   const [username, setUsername] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [allUsers, setAllUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState<UserRow[]>([]);
 
   useEffect(() => {
     async function fetchUserData() {
