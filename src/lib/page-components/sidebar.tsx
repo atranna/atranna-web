@@ -11,7 +11,11 @@ import {
   Scroll,
   Shield,
   LayoutDashboard,
+  Plus,
 } from "lucide-react";
+import { H1 } from "./headings";
+import { useEffect, useState } from "react";
+import { Hr } from "./hr";
 
 type NavItemProps = {
   label: string;
@@ -64,6 +68,36 @@ export function Sidebar({ activePage }: { activePage: string }) {
     <aside className="w-64 border-r bg-gray-200">
       <div className="p-3">
         <h3 className="text-center text-2xl font-bold">ATRANNA</h3>
+
+        <details className="mt-1 cursor-pointer">
+          <summary className="list-none">
+            <h4 className="font-bold text-l text-center hover:underline">
+              Org Name
+            </h4>
+            {/* Replace with active org name */}
+          </summary>
+          <div className="border mt-2">
+            {/* get orgs user is a part of and list here*/}
+            <button className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full">
+              <Users size={16} className="inline mr-1" />
+              Organization 1
+            </button>
+            <button className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full">
+              <Users size={16} className="inline mr-1" />
+              Organization 2
+            </button>
+            <button className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full">
+              <Users size={16} className="inline mr-1" />
+              Organization 3
+            </button>
+            <button className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full">
+              <Plus size={16} className="inline mr-1" />
+              Create New Organization
+            </button>
+          </div>
+        </details>
+
+        <Hr />
 
         <ul className="mt-4">
           <NavItem
