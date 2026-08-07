@@ -76,6 +76,7 @@ export function Sidebar({ activePage }: { activePage: string }) {
           </summary>
           <div className="border mt-2">
             {/* get orgs user is a part of and list here*/}
+            <h5 className="font-bold pl-1">Organizations</h5>
             <button className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full">
               <Users size={16} className="inline mr-1" />
               Organization 1
@@ -88,6 +89,7 @@ export function Sidebar({ activePage }: { activePage: string }) {
               <Users size={16} className="inline mr-1" />
               Organization 3
             </button>
+            <h5 className="font-bold pl-1">Actions</h5>
             <button className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full">
               <Plus size={16} className="inline mr-1" />
               Create New Organization
