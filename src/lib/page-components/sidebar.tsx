@@ -13,8 +13,6 @@ import {
   LayoutDashboard,
   Plus,
 } from "lucide-react";
-import { H1 } from "./headings";
-import { useEffect, useState } from "react";
 import { Hr } from "./hr";
 
 type NavItemProps = {
