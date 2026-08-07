@@ -1,6 +1,6 @@
 "use client";
 import { Header } from "@/lib/page-components/header";
-import { usersMe } from "@/api/users";
+import { usersMe, getUsers } from "@/api/users";
 import { Sidebar } from "@/lib/page-components/sidebar";
 import { useEffect, useState } from "react";
 import { H1 } from "@/lib/page-components/headings";
@@ -12,6 +12,7 @@ export default function Dashboard() {
   const [displayName, setDisplayName] = useState("");
 
   const [deviceCount, setDeviceCount] = useState(0);
+  const [userCount, setUserCount] = useState(0);
 
   useEffect(() => {
     async function fetchUserData() {
@@ -31,8 +32,16 @@ export default function Dashboard() {
       setDeviceCount(devices.length);
     }
 
+    async function fetchUsers() {
+      const response = await getUsers();
+      const users = await response.json();
+      console.log("Users fetched:", users);
+      setUserCount(users.length);
+    }
+
     fetchUserData();
     fetchDevices();
+    fetchUsers();
   }, []);
   const preferredName = displayName || username || "N/A";
 
@@ -44,13 +53,23 @@ export default function Dashboard() {
 
         <section className="p-6">
           <H1>Dashboard</H1>
-          <div className="mt-6 max-w-xs border border-black bg-gray-200 p-5 ">
-            <Link href="/devices">
-              <h2 className="text-xl">Devices</h2>
-              <p className="mt-3 text-3xl">
-                {deviceCount === 0 ? "No devices found." : `${deviceCount}`}
-              </p>
-            </Link>
+          <div className="flex flex-wrap gap-x-4">
+            <div className="mt-6 max-w-xs border border-black bg-gray-200 p-5 min-w-60">
+              <Link href="/devices">
+                <h2 className="text-xl">Devices</h2>
+                <p className="mt-3 text-3xl">
+                  {deviceCount === 0 ? "N/A" : `${deviceCount}`}
+                </p>
+              </Link>
+            </div>
+            <div className="mt-6 border border-black bg-gray-200 p-5 min-w-60">
+              <Link href="/users">
+                <h2 className="text-xl">Users</h2>
+                <p className="mt-3 text-3xl">
+                  {userCount === 0 ? "N/A" : `${userCount}`}
+                </p>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

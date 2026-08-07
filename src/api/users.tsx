@@ -37,3 +37,17 @@ export async function getAllUsers() {
   const data = await response.json();
   return data;
 }
+
+export async function getUsers() {
+  const jwtToken = localStorage.getItem("jwtToken");
+  const apiUrl = getRuntimeApiUrl();
+  const usersEndpoint = `${apiUrl}/api/v1/users`;
+  const response = fetch(usersEndpoint, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  });
+  return response;
+}
