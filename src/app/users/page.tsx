@@ -3,7 +3,7 @@ import { Header } from "@/lib/page-components/header";
 import { usersMe, getAllUsers } from "@/api/users";
 import { Sidebar } from "@/lib/page-components/sidebar";
 import { useEffect, useState } from "react";
-import { H1 } from "@/lib/page-components/headings";
+import { H1, H2 } from "@/lib/page-components/headings";
 import { Plus } from "lucide-react";
 
 type UserRow = {
@@ -43,9 +43,9 @@ export default function Users() {
         <Header pageName="Users" preferredName={preferredName} />
         <section className="p-6">
           <div className="flex items-center justify-between">
-            <H1>
+            <H2>
               Users &middot; <span>{allUsers.length}</span>
-            </H1>
+            </H2>
             <button className="flex items-center gap-2 py-2 bg-gray-200 hover:bg-gray-300 active:bg-gray-400 p-5 border border-black cursor-pointer hover:underline">
               <Plus size={16} />
               Add
