@@ -54,22 +54,24 @@ export default function Dashboard() {
         <section className="p-6">
           <H1>Dashboard</H1>
           <div className="flex flex-wrap gap-x-4">
-            <div className="mt-6 max-w-xs border border-black bg-gray-200 p-5 min-w-60">
-              <Link href="/devices">
-                <h2 className="text-xl">Devices</h2>
-                <p className="mt-3 text-3xl">
-                  {deviceCount === 0 ? "N/A" : `${deviceCount}`}
-                </p>
-              </Link>
-            </div>
-            <div className="mt-6 border border-black bg-gray-200 p-5 min-w-60">
-              <Link href="/users">
-                <h2 className="text-xl">Users</h2>
-                <p className="mt-3 text-3xl">
-                  {userCount === 0 ? "N/A" : `${userCount}`}
-                </p>
-              </Link>
-            </div>
+            <Link
+              href="/devices"
+              className="mt-6 max-w-xs border border-black bg-gray-200 p-5 min-w-60"
+            >
+              <h2 className="text-xl">Devices</h2>
+              <p className="mt-3 text-3xl">
+                {deviceCount === 0 ? "N/A" : `${deviceCount}`}
+              </p>
+            </Link>
+            <Link
+              href="/users"
+              className="mt-6 max-w-xs border border-black bg-gray-200 p-5 min-w-60"
+            >
+              <h2 className="text-xl">Users</h2>
+              <p className="mt-3 text-3xl">
+                {userCount === 0 ? "N/A" : `${userCount}`}
+              </p>
+            </Link>
           </div>
         </section>
       </main>
