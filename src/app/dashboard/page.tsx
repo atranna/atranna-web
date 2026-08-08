@@ -8,6 +8,7 @@ import { getDevices } from "@/api/devices";
 import Link from "next/link";
 import { Hr } from "@/lib/page-components/hr";
 import { getNetworks } from "@/api/networks";
+import { useRouter } from "next/dist/client/components/navigation";
 
 export default function Dashboard() {
   const [username, setUsername] = useState("");
@@ -16,6 +17,13 @@ export default function Dashboard() {
   const [deviceCount, setDeviceCount] = useState(0);
   const [userCount, setUserCount] = useState(0);
   const [networkCount, setNetworkCount] = useState(0);
+
+  const router = useRouter();
+  useEffect(() => {
+    if (!localStorage.getItem("jwtToken")) {
+      router.replace("/login");
+    }
+  }, [router]);
 
   useEffect(() => {
     async function fetchUserData() {
