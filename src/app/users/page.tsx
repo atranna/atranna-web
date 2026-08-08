@@ -5,6 +5,7 @@ import { Sidebar } from "@/lib/page-components/sidebar";
 import { useEffect, useState } from "react";
 import { H1, H2 } from "@/lib/page-components/headings";
 import { Plus } from "lucide-react";
+import { Button } from "@/lib/page-components/button";
 
 type UserRow = {
   id: number;
@@ -46,10 +47,10 @@ export default function Users() {
             <H2>
               Users &middot; <span>{allUsers.length}</span>
             </H2>
-            <button className="flex items-center gap-2 py-2 bg-gray-200 hover:bg-gray-300 active:bg-gray-400 p-5 border border-black cursor-pointer hover:underline">
+            <Button>
               <Plus size={16} />
               Add
-            </button>
+            </Button>
           </div>
           <table className="mt-6 w-full border border-black text-left">
             <thead className="bg-gray-200">
