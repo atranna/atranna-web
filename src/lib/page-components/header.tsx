@@ -1,3 +1,4 @@
+import { Settings, User } from "lucide-react";
 import Link from "next/link";
 
 export function Header({
@@ -11,9 +12,20 @@ export function Header({
     <header className="flex items-center justify-between border-b bg-gray-300 p-4">
       <span>{pageName}</span>
 
-      <Link href="/me" className="hover:underline">
-        {preferredName}
-      </Link>
+      <div className="flex items-center gap-2">
+        <Link
+          href="/settings"
+          className="flex items-center gap-1 hover:underline"
+        >
+          <Settings size={16} />
+          Instance Settings
+        </Link>
+        &middot;
+        <Link href="/me" className="flex items-center gap-1 hover:underline">
+          <User size={16} />
+          {preferredName}
+        </Link>
+      </div>
     </header>
   );
 }
