@@ -1,5 +1,6 @@
 import { Settings, User } from "lucide-react";
 import Link from "next/link";
+import { H1 } from "./headings";
 
 export function Header({
   pageName,
@@ -10,7 +11,7 @@ export function Header({
 }) {
   return (
     <header className="flex items-center justify-between border-b bg-gray-300 p-4">
-      <span>{pageName}</span>
+      <H1>{pageName}</H1>
 
       <div className="flex items-center gap-2">
         <Link

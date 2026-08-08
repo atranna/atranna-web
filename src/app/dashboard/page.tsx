@@ -3,9 +3,11 @@ import { Header } from "@/lib/page-components/header";
 import { usersMe, getUsers } from "@/api/users";
 import { Sidebar } from "@/lib/page-components/sidebar";
 import { useEffect, useState } from "react";
-import { H1 } from "@/lib/page-components/headings";
+import { H1, H2 } from "@/lib/page-components/headings";
 import { getDevices } from "@/api/devices";
 import Link from "next/link";
+import { Hr } from "@/lib/page-components/hr";
+import { getNetworks } from "@/api/networks";
 
 export default function Dashboard() {
   const [username, setUsername] = useState("");
@@ -13,6 +15,7 @@ export default function Dashboard() {
 
   const [deviceCount, setDeviceCount] = useState(0);
   const [userCount, setUserCount] = useState(0);
+  const [networkCount, setNetworkCount] = useState(0);
 
   useEffect(() => {
     async function fetchUserData() {
@@ -39,9 +42,17 @@ export default function Dashboard() {
       setUserCount(users.length);
     }
 
+    async function fetchNetworks() {
+      const response = await getNetworks();
+      const networks = await response.json();
+      console.log("Networks fetched:", networks);
+      setNetworkCount(networks.length);
+    }
+
     fetchUserData();
     fetchDevices();
     fetchUsers();
+    fetchNetworks();
   }, []);
   const preferredName = displayName || username || "N/A";
 
@@ -52,7 +63,7 @@ export default function Dashboard() {
         <Header pageName="Dashboard" preferredName={preferredName} />
 
         <section className="p-6">
-          <H1>Dashboard</H1>
+          <H2>Inventory</H2>
           <div className="flex flex-wrap gap-x-4">
             <Link
               href="/devices"
@@ -67,6 +78,13 @@ export default function Dashboard() {
             >
               <h2 className="text-xl">Users</h2>
               <p className="mt-3 text-3xl">{userCount}</p>
+            </Link>
+            <Link
+              href="/networks"
+              className="mt-6 max-w-xs border border-black bg-gray-200 p-5 min-w-60"
+            >
+              <h2 className="text-xl">Networks</h2>
+              <p className="mt-3 text-3xl">{networkCount}</p>
             </Link>
           </div>
         </section>
