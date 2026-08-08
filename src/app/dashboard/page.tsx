@@ -23,6 +23,9 @@ export default function Dashboard() {
     if (!localStorage.getItem("jwtToken")) {
       router.replace("/login");
     }
+    if (!localStorage.getItem("activeOrganization")) {
+      localStorage.setItem("activeOrganization", "0");
+    }
   }, [router]);
 
   useEffect(() => {
