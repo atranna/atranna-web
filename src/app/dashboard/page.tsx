@@ -70,7 +70,7 @@ export default function Dashboard() {
       <main className="flex-1">
         <Header pageName="Dashboard" preferredName={preferredName} />
 
-        <section className="p-6">
+        <section className="p-4">
           <H2>Inventory</H2>
           <div className="flex flex-wrap gap-x-4">
             <Link

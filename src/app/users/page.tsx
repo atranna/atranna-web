@@ -42,7 +42,7 @@ export default function Users() {
       <Sidebar activePage="users" />
       <main className="flex-1">
         <Header pageName="Users" preferredName={preferredName} />
-        <section className="p-6">
+        <section className="p-4">
           <div className="flex items-center justify-between">
             <H2>
               Users &middot; <span>{allUsers.length}</span>
