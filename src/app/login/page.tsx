@@ -1,6 +1,7 @@
 "use client";
 
 import { login } from "@/api/auth";
+import { H1 } from "@/lib/page-components/headings";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 export default function Login() {
@@ -23,32 +24,31 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="w-full max-w-sm p-6 border border-gray-300 rounded">
-        <h1 className="text-2xl font-bold mb-4 text-center">Atranna</h1>
-
+      <div className="w-full max-w-sm p-6 border bg-gray-100">
+        <div className="text-center mb-6">
+          <H1>ATRANNA</H1>
+        </div>
         <input
-          className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
+          className="border px-3 py-2 mb-4 w-full"
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-
         <input
-          className="border border-gray-300 rounded px-3 py-2 mb-4 w-full"
+          className="border px-3 py-2 mb-4 w-full"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <button
-          className="bg-gray-500 text-white px-4 py-2 rounded"
+          className="flex items-center gap-2 py-2 bg-gray-200 hover:bg-gray-300 active:bg-gray-400 p-5 border border-black cursor-pointer hover:underline"
           onClick={sendLoginRequest}
         >
           Login
         </button>
-        <p>{loginErrorMessage}</p>
+        <p>{loginErrorMessage}</p> {/* TODO: Replace with toast notification */}
       </div>
     </div>
   );
