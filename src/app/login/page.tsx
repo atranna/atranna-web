@@ -30,14 +30,14 @@ export default function Login() {
           <H1>ATRANNA</H1>
         </div>
         <input
-          className="border px-3 py-2 mb-4 w-full"
+          className="border px-3 py-2 mb-4 w-full hover:bg-gray-300 focus:bg-gray-300"
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
-          className="border px-3 py-2 mb-4 w-full"
+          className="border px-3 py-2 mb-4 w-full hover:bg-gray-300 focus:bg-gray-300"
           type="password"
           placeholder="Password"
           value={password}
