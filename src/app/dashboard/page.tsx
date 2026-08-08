@@ -59,18 +59,14 @@ export default function Dashboard() {
               className="mt-6 max-w-xs border border-black bg-gray-200 p-5 min-w-60"
             >
               <h2 className="text-xl">Devices</h2>
-              <p className="mt-3 text-3xl">
-                {deviceCount === 0 ? "N/A" : `${deviceCount}`}
-              </p>
+              <p className="mt-3 text-3xl">{deviceCount}</p>
             </Link>
             <Link
               href="/users"
               className="mt-6 max-w-xs border border-black bg-gray-200 p-5 min-w-60"
             >
               <h2 className="text-xl">Users</h2>
-              <p className="mt-3 text-3xl">
-                {userCount === 0 ? "N/A" : `${userCount}`}
-              </p>
+              <p className="mt-3 text-3xl">{userCount}</p>
             </Link>
           </div>
         </section>
