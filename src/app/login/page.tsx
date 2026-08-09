@@ -22,8 +22,14 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="w-full max-w-sm p-6 border bg-gray-100">
+    <div
+      className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/taylor-vick-M5tzZtFCOfs-unsplash.jpg')",
+      }}
+    >
+      <div className="absolute inset-0 backdrop-blur-sm bg-black/20" />
+      <div className="relative w-full max-w-sm p-6 border bg-gray-100">
         <div className="text-center mb-6">
           <H1>ATRANNA</H1>
         </div>
