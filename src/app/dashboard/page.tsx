@@ -75,21 +75,21 @@ export default function Dashboard() {
           <div className="flex flex-wrap gap-x-4">
             <Link
               href="/devices"
-              className="mt-6 max-w-xs border border-black bg-gray-200 p-5 min-w-60"
+              className="mt-6 max-w-xs border border-black bg-gray-100  hover:bg-gray-200 active:bg-gray-300 p-5 min-w-60"
             >
               <h2 className="text-xl">Devices</h2>
               <p className="mt-3 text-3xl">{deviceCount}</p>
             </Link>
             <Link
               href="/users"
-              className="mt-6 max-w-xs border border-black bg-gray-200 p-5 min-w-60"
+              className="mt-6 max-w-xs border border-black bg-gray-100 hover:bg-gray-200 active:bg-gray-300 p-5 min-w-60"
             >
               <h2 className="text-xl">Users</h2>
               <p className="mt-3 text-3xl">{userCount}</p>
             </Link>
             <Link
               href="/networks"
-              className="mt-6 max-w-xs border border-black bg-gray-200 p-5 min-w-60"
+              className="mt-6 max-w-xs border border-black bg-gray-100 hover:bg-gray-200 active:bg-gray-300 p-5 min-w-60"
             >
               <h2 className="text-xl">Networks</h2>
               <p className="mt-3 text-3xl">{networkCount}</p>
