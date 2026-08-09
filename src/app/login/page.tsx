@@ -23,7 +23,7 @@ export default function Login() {
 
   return (
     <div
-      className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat text-white"
       style={{
         backgroundImage: "url('/taylor-vick-M5tzZtFCOfs-unsplash.jpg')",
       }}

@@ -40,14 +40,14 @@ export default function Users() {
   return (
     <div className="flex min-h-screen">
       <Sidebar activePage="users" />
-      <main className="flex-1">
+      <main className="flex-1 bg-gray-300 text-white">
         <Header pageName="Users" preferredName={preferredName} />
         <section className="p-4">
           <div className="flex items-center justify-between">
             <H2>
               Users &middot; <span>{allUsers.length}</span>
             </H2>
-            <Button>
+            <Button primary>
               <Plus size={16} />
               Add
             </Button>

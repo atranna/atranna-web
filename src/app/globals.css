@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  --color-*: initial;
+  --color-gray-100: #11111b; /* Mocha Crust */
+  --color-gray-200: #181825; /* Mocha Mantle */
+  --color-gray-300: #1e1e2e; /* Mocha Base */
+  --color-gray-400: #313244; /* Mocha Surface 0 */
+  --color-gray-500: #45475a; /* Mocha Surface 1 */
+  --color-gray-600: #585b70; /* Mocha Surface 2 */
+  --color-gray-700: #6c7086; /* Mocha Overlay 0 */
+  --color-gray-800: #a6adc8; /* Mocha Overlay 1 */
+  --color-gray-900: #9399b2; /* Mocha Overlay 2 */
+  --color-gray-950: #a6adc8; /* Mocha Subtext 0 */
+  --color-gray-1000: #bac2de; /* Mocha Subtext 1 */
+  --color-white: #cdd6f4; /* Mocha Text */
+  --color-blue: #89b4fa; /* Mocha Blue */
+}

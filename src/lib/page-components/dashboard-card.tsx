@@ -12,7 +12,7 @@ export function DashboardCard({
   return (
     <Link
       href={link}
-      className="mt-6 max-w-xs border border-black bg-gray-100  hover:bg-gray-200 active:bg-gray-300 p-5 min-w-60"
+      className="mt-6 max-w-xs border border-black bg-gray-200  hover:bg-gray-100 p-5 min-w-60"
     >
       <h2 className="text-xl">{title}</h2>
       <p className="mt-3 text-3xl">{content}</p>

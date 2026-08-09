@@ -119,14 +119,14 @@ export default function Devices() {
   return (
     <div className="flex min-h-screen">
       <Sidebar activePage="devices" />
-      <main className="flex-1">
+      <main className="flex-1 bg-gray-300 text-white">
         <Header pageName="Devices" preferredName={preferredName} />
         <section className="p-4">
           <div className="flex items-center justify-between">
             <H2>
               Devices &middot; <span>{allDevices.length || 0}</span>
             </H2>
-            <Button onClick={openAddDeviceForm}>
+            <Button onClick={openAddDeviceForm} primary>
               <Plus size={16} />
               Add
             </Button>
@@ -174,11 +174,11 @@ export default function Devices() {
       </main>
       {isAddDeviceOpen ? (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+          className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur bg-gray-300/40"
           onClick={closeAddDeviceForm}
         >
           <div
-            className="w-full max-w-2xl border border-black bg-white p-6"
+            className="w-full max-w-2xl border border-black bg-gray-200 text-white p-6 "
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-6 flex items-start justify-between gap-4">
@@ -267,14 +267,14 @@ export default function Devices() {
                   type="button"
                   onClick={closeAddDeviceForm}
                   disabled={isSubmittingDevice}
-                  className="border border-black bg-white px-4 py-2 hover:bg-gray-100 active:bg-gray-200 cursor-pointer"
+                  className="border border-black px-4 py-2 hover:bg-gray-300 active:bg-gray-200 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmittingDevice}
-                  className="border border-black bg-gray-200 px-4 py-2 text-black hover:bg-gray-300 active:bg-gray-400 cursor-pointer"
+                  className="border  border-blue text-blue bg-gray-200 px-4 py-2 text-black hover:bg-gray-300 active:bg-gray-400 cursor-pointer"
                 >
                   {isSubmittingDevice ? "Adding..." : "Add device"}
                 </button>
