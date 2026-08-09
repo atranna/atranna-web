@@ -14,6 +14,8 @@ import {
   Plus,
 } from "lucide-react";
 import { Hr } from "./hr";
+import { useState, useEffect } from "react";
+import { getOrganization } from "@/api/organizations";
 
 type NavItemProps = {
   label: string;
@@ -62,6 +64,25 @@ function NavSection({ title, icon: Icon, children }: NavSectionProps) {
 }
 
 export function Sidebar({ activePage }: { activePage: string }) {
+  const [organizationName, setOrganizationName] = useState("N/A");
+
+  useEffect(() => {
+    async function fetchOrganizationName() {
+      const organizationId = window.localStorage.getItem("activeOrganization");
+
+      if (organizationId) {
+        const response = await getOrganization(organizationId);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setOrganizationName(data.name);
+      } else {
+        setOrganizationName("Select Organization");
+      }
+    }
+    fetchOrganizationName();
+  }, []);
   return (
     <aside className="w-64 border-r bg-gray-200">
       <div className="p-3">
@@ -70,7 +91,7 @@ export function Sidebar({ activePage }: { activePage: string }) {
         <details className="mt-1 cursor-pointer">
           <summary className="list-none">
             <h4 className="font-bold text-l text-center hover:underline">
-              Org Name
+              {organizationName}
             </h4>
             {/* Replace with active org name */}
           </summary>
