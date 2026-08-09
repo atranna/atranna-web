@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Building2,
   Users,
@@ -15,7 +16,7 @@ import {
 } from "lucide-react";
 import { Hr } from "./hr";
 import { useState, useEffect } from "react";
-import { getOrganization } from "@/api/organizations";
+import { getOrganization, getOrganizations } from "@/api/organizations";
 
 type NavItemProps = {
   label: string;
@@ -64,7 +65,13 @@ function NavSection({ title, icon: Icon, children }: NavSectionProps) {
 }
 
 export function Sidebar({ activePage }: { activePage: string }) {
-  const [organizationName, setOrganizationName] = useState("N/A");
+  const router = useRouter();
+  const [organizationName, setOrganizationName] = useState(
+    "Select Organization",
+  );
+  const [organizations, setOrganizations] = useState<
+    Array<{ id: string; name: string }>
+  >([]);
 
   useEffect(() => {
     async function fetchOrganizationName() {
@@ -81,6 +88,23 @@ export function Sidebar({ activePage }: { activePage: string }) {
         setOrganizationName("Select Organization");
       }
     }
+
+    async function fetchOrganizations() {
+      const response = await getOrganizations();
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setOrganizations(
+        data.map((org: { id: string; name: string }) => ({
+          id: org.id,
+          name: org.name,
+        })),
+      );
+    }
+
+    fetchOrganizations();
+
     fetchOrganizationName();
   }, []);
   return (
@@ -95,22 +119,28 @@ export function Sidebar({ activePage }: { activePage: string }) {
             </h4>
           </summary>
           <div className="border mt-2">
-            {/* get orgs user is a part of and list here*/}
             <h5 className="font-bold pl-1">Organizations</h5>
-            <button className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full">
-              <Users size={16} className="inline mr-1" />
-              Organization 1
-            </button>
-            <button className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full">
-              <Users size={16} className="inline mr-1" />
-              Organization 2
-            </button>
-            <button className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full">
-              <Users size={16} className="inline mr-1" />
-              Organization 3
-            </button>
+            {organizations.map((org) => (
+              <button
+                key={org.id}
+                className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full"
+                onClick={() => {
+                  window.localStorage.setItem("activeOrganization", org.id);
+                  setOrganizationName(org.name);
+                  window.location.reload();
+                }}
+              >
+                <Users size={16} className="inline mr-1" />
+                {org.name}
+              </button>
+            ))}
             <h5 className="font-bold pl-1">Actions</h5>
-            <button className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full">
+            <button
+              className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full"
+              onClick={() => {
+                router.push("/organizations/new");
+              }}
+            >
               <Plus size={16} className="inline mr-1" />
               Create New Organization
             </button>
