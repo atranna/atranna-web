@@ -174,7 +174,7 @@ export default function Devices() {
       </main>
       {isAddDeviceOpen ? (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
           onClick={closeAddDeviceForm}
         >
           <div
