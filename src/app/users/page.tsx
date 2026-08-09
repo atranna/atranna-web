@@ -3,7 +3,7 @@ import { Header } from "@/lib/page-components/header";
 import { usersMe, getAllUsers } from "@/api/users";
 import { Sidebar } from "@/lib/page-components/sidebar";
 import { useEffect, useState } from "react";
-import { H1, H2 } from "@/lib/page-components/headings";
+import { H2 } from "@/lib/page-components/headings";
 import { Plus } from "lucide-react";
 import { Button } from "@/lib/page-components/button";
 

@@ -35,11 +35,11 @@ function NavItem({
     <li>
       <Link
         href={href}
-        className={`flex items-center gap-2 rounded px-2 py-1 hover:bg-gray-300 ${
-          active ? "bg-gray-300" : ""
+        className={`flex items-center gap-2 rounded px-2 py-1 hover:bg-gray-300 hover:text-blue ${
+          active ? "bg-gray-300 text-sapphire" : ""
         }`}
       >
-        <Icon size={20} />
+        <Icon size={16} />
         <span>{label}</span>
       </Link>
     </li>
@@ -54,9 +54,9 @@ type NavSectionProps = {
 
 function NavSection({ title, icon: Icon, children }: NavSectionProps) {
   return (
-    <li className="mt-4">
+    <li className="mt-1">
       <div className="flex items-center gap-2 py-2">
-        <Icon size={24} />
+        <Icon size={20} />
         <h4 className="font-bold">{title}</h4>
       </div>
 
@@ -111,7 +111,10 @@ export function Sidebar({ activePage }: { activePage: string }) {
   return (
     <aside className="w-64 border-r bg-gray-200 text-white">
       <div className="px-3 pt-4">
-        <h3 className="text-center text-2xl font-bold text-blue">ATRANNA</h3>
+        <h3 className="text-center text-2xl font-bold text-blue">
+          <Link href="/dashboard">ATRANNA</Link>
+        </h3>
+
         <details className="mt-1 cursor-pointer">
           <summary className="list-none">
             <h4 className="font-bold text-l text-center hover:underline">
@@ -119,11 +122,11 @@ export function Sidebar({ activePage }: { activePage: string }) {
             </h4>
           </summary>
           <div className="border mt-2">
-            <h5 className="font-bold pl-1">Organizations</h5>
+            <h5 className="font-bold pl-1 text-sapphire">Organizations</h5>
             {organizations.map((org) => (
               <button
                 key={org.id}
-                className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full"
+                className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 hover:text-blue w-full"
                 onClick={() => {
                   window.localStorage.setItem("activeOrganization", org.id);
                   setOrganizationName(org.name);
@@ -134,9 +137,9 @@ export function Sidebar({ activePage }: { activePage: string }) {
                 {org.name}
               </button>
             ))}
-            <h5 className="font-bold pl-1">Actions</h5>
+            <h5 className="font-bold pl-1 text-sapphire">Actions</h5>
             <button
-              className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full"
+              className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 hover:text-blue w-full"
               onClick={() => {
                 router.push("/organizations/settings");
               }}
@@ -145,7 +148,7 @@ export function Sidebar({ activePage }: { activePage: string }) {
               Organization Settings
             </button>
             <button
-              className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full"
+              className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 hover:text-blue w-full"
               onClick={() => {
                 router.push("/organizations/new");
               }}
