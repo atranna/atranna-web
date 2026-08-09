@@ -12,10 +12,11 @@ export async function login(username: string, password: string) {
     body: JSON.stringify({ username, password }),
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error("Login failed: " + response.statusText);
+    return { error: "Login failed: " + data.error };
   }
 
-  const data = await response.json();
-  return data.token;
+  return { data, success: true };
 }

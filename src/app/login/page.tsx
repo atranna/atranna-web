@@ -12,14 +12,12 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   async function sendLoginRequest() {
-    try {
-      const token = await login(username, password);
-      localStorage.setItem("jwtToken", token);
+    const response = await login(username, password);
+    if (response.success) {
+      localStorage.setItem("jwtToken", response.data.token);
       router.replace("/dashboard");
-    } catch (error) {
-      setLoginErrorMessage(
-        error instanceof Error ? error.message : "An unknown error occurred",
-      );
+    } else {
+      setLoginErrorMessage(response.error || "Login failed");
     }
   }
 
