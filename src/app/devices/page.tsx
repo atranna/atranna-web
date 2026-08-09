@@ -7,6 +7,7 @@ import { H2 } from "@/lib/page-components/headings";
 import { Plus } from "lucide-react";
 import { Button } from "@/lib/page-components/button";
 import { getDevices } from "@/api/devices";
+import Link from "next/link";
 
 type DeviceRow = {
   id: number;
@@ -72,7 +73,12 @@ export default function Devices() {
                 <tr key={device.id} className="border border-b-black">
                   <td className="border border-r-black pl-1">{device.id}</td>
                   <td className="border border-r-black pl-1">
-                    {device.hostname || "N/A"}
+                    <Link
+                      href={`/devices/${device.id}`}
+                      className="flex items-center gap-1 hover:underline"
+                    >
+                      {device.hostname || "N/A"}
+                    </Link>
                   </td>
                   <td className="border border-r-black pl-1">
                     {device.ip || "N/A"}
