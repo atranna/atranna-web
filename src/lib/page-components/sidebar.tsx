@@ -13,6 +13,7 @@ import {
   Shield,
   LayoutDashboard,
   Plus,
+  Settings,
 } from "lucide-react";
 import { Hr } from "./hr";
 import { useState, useEffect } from "react";
@@ -135,6 +136,15 @@ export function Sidebar({ activePage }: { activePage: string }) {
               </button>
             ))}
             <h5 className="font-bold pl-1">Actions</h5>
+            <button
+              className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full"
+              onClick={() => {
+                router.push("/organizations/settings");
+              }}
+            >
+              <Settings size={16} className="inline mr-1" />
+              Organization Settings
+            </button>
             <button
               className="flex items-center pl-1 cursor-pointer hover:bg-gray-300 w-full"
               onClick={() => {
