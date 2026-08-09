@@ -40,9 +40,6 @@ export default function Dashboard() {
       const response = await getDevices();
       const devices = await response.json();
       console.log("Devices fetched:", devices);
-      for (const device of devices) {
-        console.log(`Device: ${device.name}`);
-      }
       setDeviceCount(devices.length);
     }
 

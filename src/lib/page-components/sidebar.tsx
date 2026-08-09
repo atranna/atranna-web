@@ -93,7 +93,6 @@ export function Sidebar({ activePage }: { activePage: string }) {
             <h4 className="font-bold text-l text-center hover:underline">
               {organizationName}
             </h4>
-            {/* Replace with active org name */}
           </summary>
           <div className="border mt-2">
             {/* get orgs user is a part of and list here*/}
