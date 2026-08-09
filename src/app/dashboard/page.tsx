@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Hr } from "@/lib/page-components/hr";
 import { getNetworks } from "@/api/networks";
 import { useRouter } from "next/dist/client/components/navigation";
+import { DashboardCard } from "@/lib/page-components/dashboard-card";
 
 export default function Dashboard() {
   const [username, setUsername] = useState("");
@@ -73,27 +74,17 @@ export default function Dashboard() {
         <section className="p-4">
           <H2>Inventory</H2>
           <div className="flex flex-wrap gap-x-4">
-            <Link
-              href="/devices"
-              className="mt-6 max-w-xs border border-black bg-gray-100  hover:bg-gray-200 active:bg-gray-300 p-5 min-w-60"
-            >
-              <h2 className="text-xl">Devices</h2>
-              <p className="mt-3 text-3xl">{deviceCount}</p>
-            </Link>
-            <Link
-              href="/users"
-              className="mt-6 max-w-xs border border-black bg-gray-100 hover:bg-gray-200 active:bg-gray-300 p-5 min-w-60"
-            >
-              <h2 className="text-xl">Users</h2>
-              <p className="mt-3 text-3xl">{userCount}</p>
-            </Link>
-            <Link
-              href="/networks"
-              className="mt-6 max-w-xs border border-black bg-gray-100 hover:bg-gray-200 active:bg-gray-300 p-5 min-w-60"
-            >
-              <h2 className="text-xl">Networks</h2>
-              <p className="mt-3 text-3xl">{networkCount}</p>
-            </Link>
+            <DashboardCard
+              title="Devices"
+              content={deviceCount}
+              link="/devices"
+            />
+            <DashboardCard title="Users" content={userCount} link="/users" />
+            <DashboardCard
+              title="Networks"
+              content={networkCount}
+              link="/networks"
+            />
           </div>
         </section>
       </main>
