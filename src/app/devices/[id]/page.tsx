@@ -8,6 +8,15 @@ import { Sidebar } from "@/lib/page-components/sidebar";
 import { H1, H2 } from "@/lib/page-components/headings";
 import { Header } from "@/lib/page-components/header";
 
+type Device = {
+  id: number;
+  hostname: string;
+  ip: string;
+  vendor: string;
+  model: string;
+  type: string;
+};
+
 export default function Device({
   params,
 }: {
@@ -17,7 +26,7 @@ export default function Device({
 
   const [username, setUsername] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [device, setDevice] = useState<any>(null);
+  const [device, setDevice] = useState<Device>();
   useEffect(() => {
     async function fetchUserData() {
       const userData = await usersMe();
