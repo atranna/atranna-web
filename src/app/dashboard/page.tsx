@@ -70,7 +70,6 @@ export default function Dashboard() {
         <Header pageName="Dashboard" preferredName={preferredName} />
 
         <section className="p-4">
-          <H2>Inventory</H2>
           <div className="flex flex-wrap gap-x-4">
             <DashboardCard
               title="Devices"

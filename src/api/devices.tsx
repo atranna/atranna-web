@@ -16,6 +16,22 @@ export async function getDevices() {
   return response;
 }
 
+export async function getDevice(id: string) {
+  const jwtToken = localStorage.getItem("jwtToken");
+  const activeOrganization = localStorage.getItem("activeOrganization");
+  const apiUrl = getRuntimeApiUrl();
+  const deviceEndpoint = `${apiUrl}/api/v1/devices/${id}`;
+  const response = fetch(deviceEndpoint, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwtToken}`,
+      "X-Org-ID": `${activeOrganization}`,
+    },
+  });
+  return response;
+}
+
 export async function addDevice(requestBody: {
   hostname: string;
   ip: string;

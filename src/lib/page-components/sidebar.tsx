@@ -109,15 +109,17 @@ export function Sidebar({ activePage }: { activePage: string }) {
     fetchOrganizationName();
   }, []);
   return (
-    <aside className="w-64 border-r bg-mantle text-text">
+    <aside className="w-64 border-r border-text bg-mantle text-text">
       <div className="px-3 pt-4">
-        <h3 className="text-center text-2xl font-bold text-blue">
-          <Link href="/dashboard">ATRANNA</Link>
+        <h3 className="text-2xl font-bold text-blue">
+          <Link href="/dashboard" className="hover:underline">
+            ATRANNA
+          </Link>
         </h3>
 
         <details className="mt-1 cursor-pointer">
           <summary className="list-none">
-            <h4 className="font-bold text-l text-center hover:underline">
+            <h4 className="font-bold text-l hover:underline">
               {organizationName}
             </h4>
           </summary>
