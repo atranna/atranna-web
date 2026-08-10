@@ -109,7 +109,7 @@ export function Sidebar({ activePage }: { activePage: string }) {
     fetchOrganizationName();
   }, []);
   return (
-    <aside className="w-64 border-r bg-gray-200 text-white">
+    <aside className="w-64 border-r bg-mantle text-text">
       <div className="px-3 pt-4">
         <h3 className="text-center text-2xl font-bold text-blue">
           <Link href="/dashboard">ATRANNA</Link>

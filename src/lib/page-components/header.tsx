@@ -10,7 +10,7 @@ export function Header({
   preferredName: string;
 }) {
   return (
-    <header className="flex items-center justify-between border-b bg-gray-100 p-4 text-white">
+    <header className="flex items-center justify-between border-b bg-crust p-4 text-text">
       <H1>{pageName}</H1>
 
       <div className="flex items-center gap-2">

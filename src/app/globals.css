@@ -2,18 +2,30 @@
 
 @theme {
   --color-*: initial;
-  --color-gray-100: #11111b; /* Mocha Crust */
-  --color-gray-200: #181825; /* Mocha Mantle */
-  --color-gray-300: #1e1e2e; /* Mocha Base */
-  --color-gray-400: #313244; /* Mocha Surface 0 */
-  --color-gray-500: #45475a; /* Mocha Surface 1 */
-  --color-gray-600: #585b70; /* Mocha Surface 2 */
-  --color-gray-700: #6c7086; /* Mocha Overlay 0 */
-  --color-gray-800: #a6adc8; /* Mocha Overlay 1 */
-  --color-gray-900: #9399b2; /* Mocha Overlay 2 */
-  --color-gray-950: #a6adc8; /* Mocha Subtext 0 */
-  --color-gray-1000: #bac2de; /* Mocha Subtext 1 */
-  --color-white: #cdd6f4; /* Mocha Text */
+  --color-crust: #11111b; /* Mocha Crust */
+  --color-mantle: #181825; /* Mocha Mantle */
+  --color-base: #1e1e2e; /* Mocha Base */
+  --color-surface-0: #313244; /* Mocha Surface 0 */
+  --color-surface-1: #45475a; /* Mocha Surface 1 */
+  --color-surface-2: #585b70; /* Mocha Surface 2 */
+  --color-overlay-0: #6c7086; /* Mocha Overlay 0 */
+  --color-overlay-1: #a6adc8; /* Mocha Overlay 1 */
+  --color-overlay-2: #9399b2; /* Mocha Overlay 2 */
+  --color-subtext-0: #a6adc8; /* Mocha Subtext 0 */
+  --color-subtext-1: #bac2de; /* Mocha Subtext 1 */
+  --color-text: #cdd6f4; /* Mocha Text */
+  --color-lavender: #b4befe; /* Mocha Lavender */
   --color-blue: #89b4fa; /* Mocha Blue */
   --color-sapphire: #74c7ec; /* Mocha Sapphire */
+  --color-sky: #89dceb; /* Mocha Sky */
+  --color-teal: #94e2d5; /* Mocha Teal */
+  --color-green: #a6e3a1; /* Mocha Green */
+  --color-yellow: #f9e2af; /* Mocha Yellow */
+  --color-peach: #fab387; /* Mocha Peach */
+  --color-maroon: #eba0ac; /* Mocha Maroon */
+  --color-red: #f38ba8; /* Mocha Red */
+  --color-mauve: #cba6f7; /* Mocha Mauve */
+  --color-pink: #f5c2e7; /* Mocha Pink */
+  --color-flamingo: #f2cdcd; /* Mocha Flamingo */
+  --color-rosewater: #f5e0dc; /* Mocha Rosewater */
 }

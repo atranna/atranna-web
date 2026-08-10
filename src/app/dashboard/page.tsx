@@ -66,7 +66,7 @@ export default function Dashboard() {
   return (
     <div className="flex min-h-screen">
       <Sidebar activePage="dashboard" />
-      <main className="flex-1 bg-gray-300 text-white">
+      <main className="flex-1 bg-base text-text">
         <Header pageName="Dashboard" preferredName={preferredName} />
 
         <section className="p-4">

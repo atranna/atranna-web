@@ -119,7 +119,7 @@ export default function Devices() {
   return (
     <div className="flex min-h-screen">
       <Sidebar activePage="devices" />
-      <main className="flex-1 bg-gray-300 text-white">
+      <main className="flex-1 bg-base text-text">
         <Header pageName="Devices" preferredName={preferredName} />
         <section className="p-4">
           <div className="flex items-center justify-between">
@@ -178,7 +178,7 @@ export default function Devices() {
           onClick={closeAddDeviceForm}
         >
           <div
-            className="w-full max-w-2xl border border-black bg-gray-200 text-white p-6 "
+            className="w-full max-w-2xl border border-black bg-mantle text-text p-6 "
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-6 flex items-start justify-between gap-4">
