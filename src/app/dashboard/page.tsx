@@ -71,7 +71,7 @@ export default function Dashboard() {
 
         <section className="p-4">
           <H2>Inventory</H2>
-          <div className="flex flex-wrap gap-x-4">
+          <div className="pt-4 flex flex-wrap gap-x-4">
             <DashboardCard
               title="Devices"
               content={deviceCount}
