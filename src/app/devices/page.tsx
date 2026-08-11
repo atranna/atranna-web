@@ -131,7 +131,7 @@ export default function Devices() {
               Add
             </Button>
           </div>
-          <table className="mt-6 w-full border border-black text-left">
+          <table className="mt-4 w-full border border-black text-left">
             <thead className="bg-gray-200">
               <tr>
                 <th className="border border-r-black pl-1">ID</th>
