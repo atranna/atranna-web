@@ -35,8 +35,8 @@ function NavItem({
     <li>
       <Link
         href={href}
-        className={`flex items-center gap-2 rounded px-2 py-1 hover:bg-base hover:text-blue ${
-          active ? "bg-base text-sapphire" : ""
+        className={`flex items-center gap-2 rounded px-2 py-1 hover:bg-base hover:text-mauve ${
+          active ? "bg-base text-mauve" : ""
         }`}
       >
         <Icon size={16} />
@@ -111,7 +111,7 @@ export function Sidebar({ activePage }: { activePage: string }) {
   return (
     <aside className="w-64 border-r border-text bg-mantle text-text">
       <div className="px-3 pt-4">
-        <h3 className="text-2xl font-bold text-blue">
+        <h3 className="text-2xl font-bold text-mauve">
           <Link href="/dashboard" className="hover:underline">
             ATRANNA
           </Link>
@@ -124,11 +124,11 @@ export function Sidebar({ activePage }: { activePage: string }) {
             </h4>
           </summary>
           <div className="border mt-2">
-            <h5 className="font-bold pl-1 text-sapphire">Organizations</h5>
+            <h5 className="font-bold pl-1 text-mauve">Organizations</h5>
             {organizations.map((org) => (
               <button
                 key={org.id}
-                className="flex items-center pl-1 cursor-pointer hover:bg-base hover:text-blue w-full"
+                className="flex items-center pl-1 cursor-pointer hover:bg-base hover:text-mauve w-full"
                 onClick={() => {
                   window.localStorage.setItem("activeOrganization", org.id);
                   setOrganizationName(org.name);
@@ -139,9 +139,9 @@ export function Sidebar({ activePage }: { activePage: string }) {
                 {org.name}
               </button>
             ))}
-            <h5 className="font-bold pl-1 text-sapphire">Actions</h5>
+            <h5 className="font-bold pl-1 text-mauve">Actions</h5>
             <button
-              className="flex items-center pl-1 cursor-pointer hover:bg-base hover:text-blue w-full"
+              className="flex items-center pl-1 cursor-pointer hover:bg-base hover:text-mauve w-full"
               onClick={() => {
                 router.push("/organizations/settings");
               }}
@@ -150,7 +150,7 @@ export function Sidebar({ activePage }: { activePage: string }) {
               Organization Settings
             </button>
             <button
-              className="flex items-center pl-1 cursor-pointer hover:bg-base hover:text-blue w-full"
+              className="flex items-center pl-1 cursor-pointer hover:bg-base hover:text-mauve w-full"
               onClick={() => {
                 router.push("/organizations/new");
               }}

@@ -274,7 +274,7 @@ export default function Devices() {
                 <button
                   type="submit"
                   disabled={isSubmittingDevice}
-                  className="border  border-blue text-blue bg-gray-200 px-4 py-2 text-black hover:bg-gray-300 active:bg-gray-400 cursor-pointer"
+                  className="border  border-mauve text-mauve bg-gray-200 px-4 py-2 text-black hover:bg-gray-300 active:bg-gray-400 cursor-pointer"
                 >
                   {isSubmittingDevice ? "Adding..." : "Add device"}
                 </button>
