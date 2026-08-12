@@ -8,6 +8,7 @@ import { SectionHeader } from "@/components/section-header";
 import { DataTable } from "@/components/data-table";
 import { Modal } from "@/components/modal";
 import { FormField, Select, FormActions } from "@/components/form";
+import { toastError, toastSuccess } from "@/components/toast";
 
 const emptyInviteUserForm: InviteUserFormState = {
   id: 0,
@@ -20,7 +21,6 @@ export default function Users() {
   const [isInviteUserOpen, setIsInviteUserOpen] = useState(false);
   const [inviteUserForm, setInviteUserForm] =
     useState<InviteUserFormState>(emptyInviteUserForm);
-  const [inviteUserFormError, setInviteUserFormError] = useState("");
   const [isSubmittingInviteUser, setIsSubmittingInviteUser] = useState(false);
 
   const [allUsers, setAllUsers] = useState<User[]>([]);
@@ -48,7 +48,6 @@ export default function Users() {
 
   function openInviteUserForm() {
     setInviteUserForm(emptyInviteUserForm);
-    setInviteUserFormError("");
     setIsInviteUserOpen(true);
   }
 
@@ -66,7 +65,6 @@ export default function Users() {
     event: React.FormEvent<HTMLFormElement>,
   ) {
     event.preventDefault();
-    setInviteUserFormError("");
     setIsSubmittingInviteUser(true);
 
     try {
@@ -75,8 +73,9 @@ export default function Users() {
       await fetchMembersAndUsers();
       setInviteUserForm(emptyInviteUserForm);
       setIsInviteUserOpen(false);
+      toastSuccess("User invited successfully");
     } catch (error) {
-      setInviteUserFormError(
+      toastError(
         error instanceof Error ? error.message : "Failed to invite user",
       );
     } finally {
@@ -114,7 +113,10 @@ export default function Users() {
         rows={usersWithRoles}
         columns={[
           { header: "ID", render: (user) => user.id },
-          { header: "Display Name", render: (user) => user.display_name || "N/A" },
+          {
+            header: "Display Name",
+            render: (user) => user.display_name || "N/A",
+          },
           { header: "Email", render: (user) => user.email || "N/A" },
           { header: "Username", render: (user) => user.username },
           { header: "Role", render: (user) => user.role },
@@ -166,7 +168,6 @@ export default function Users() {
             submittingLabel="Inviting..."
             submitting={isSubmittingInviteUser}
             disabled={inviteUserForm.id === 0}
-            error={inviteUserFormError}
           />
         </form>
       </Modal>

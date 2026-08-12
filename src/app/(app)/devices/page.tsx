@@ -8,6 +8,7 @@ import { SectionHeader } from "@/components/section-header";
 import { DataTable } from "@/components/data-table";
 import { Modal } from "@/components/modal";
 import { FormField, Input, FormActions } from "@/components/form";
+import { toastError, toastSuccess } from "@/components/toast";
 
 const emptyDeviceForm: DeviceFormState = {
   hostname: "",
@@ -21,7 +22,6 @@ export default function Devices() {
   const [allDevices, setAllDevices] = useState<Device[]>([]);
   const [isAddDeviceOpen, setIsAddDeviceOpen] = useState(false);
   const [isSubmittingDevice, setIsSubmittingDevice] = useState(false);
-  const [deviceFormError, setDeviceFormError] = useState("");
   const [deviceForm, setDeviceForm] =
     useState<DeviceFormState>(emptyDeviceForm);
 
@@ -45,7 +45,6 @@ export default function Devices() {
     event: React.FormEvent<HTMLFormElement>,
   ) {
     event.preventDefault();
-    setDeviceFormError("");
     setIsSubmittingDevice(true);
 
     try {
@@ -53,10 +52,9 @@ export default function Devices() {
       setAllDevices(await getDevices());
       setDeviceForm(emptyDeviceForm);
       setIsAddDeviceOpen(false);
+      toastSuccess("Device added successfully");
     } catch (error) {
-      setDeviceFormError(
-        error instanceof Error ? error.message : "Failed to add device",
-      );
+      toastError(error instanceof Error ? error.message : String(error));
     } finally {
       setIsSubmittingDevice(false);
     }
@@ -114,9 +112,7 @@ export default function Devices() {
               <Input
                 type="text"
                 value={deviceForm.ip}
-                onChange={(event) =>
-                  updateDeviceForm("ip", event.target.value)
-                }
+                onChange={(event) => updateDeviceForm("ip", event.target.value)}
                 placeholder="192.168.1.10"
               />
             </FormField>
@@ -157,7 +153,6 @@ export default function Devices() {
             submitLabel="Add device"
             submittingLabel="Adding..."
             submitting={isSubmittingDevice}
-            error={deviceFormError}
           />
         </form>
       </Modal>

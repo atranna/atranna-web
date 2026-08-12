@@ -1,14 +1,28 @@
-import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes } from "react";
+import type {
+  InputHTMLAttributes,
+  ReactNode,
+  SelectHTMLAttributes,
+} from "react";
 
 export const inputClass =
   "border border-black px-3 py-2 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-black/20";
 
 export function Input(props: InputHTMLAttributes<HTMLInputElement>) {
-  return <input {...props} className={`${inputClass} ${props.className ?? ""}`.trim()} />;
+  return (
+    <input
+      {...props}
+      className={`${inputClass} ${props.className ?? ""}`.trim()}
+    />
+  );
 }
 
 export function Select(props: SelectHTMLAttributes<HTMLSelectElement>) {
-  return <select {...props} className={`${inputClass} ${props.className ?? ""}`.trim()} />;
+  return (
+    <select
+      {...props}
+      className={`${inputClass} ${props.className ?? ""}`.trim()}
+    />
+  );
 }
 
 export function FormField({
@@ -21,7 +35,9 @@ export function FormField({
   children: ReactNode;
 }) {
   return (
-    <label className={`grid gap-2 text-sm font-medium text-gray-900 ${className}`.trim()}>
+    <label
+      className={`grid gap-2 text-sm font-medium text-gray-900 ${className}`.trim()}
+    >
       {label}
       {children}
     </label>
@@ -35,7 +51,6 @@ export function FormActions({
   submittingLabel,
   submitting,
   disabled = false,
-  error,
 }: {
   onCancel: () => void;
   cancelLabel?: string;
@@ -43,7 +58,6 @@ export function FormActions({
   submittingLabel: string;
   submitting: boolean;
   disabled?: boolean;
-  error: string;
 }) {
   return (
     <>
@@ -64,7 +78,6 @@ export function FormActions({
           {submitting ? submittingLabel : submitLabel}
         </button>
       </div>
-      {error ? <p className="mt-3 text-sm text-red-700">{error}</p> : null}
     </>
   );
 }
