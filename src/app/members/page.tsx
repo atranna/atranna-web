@@ -4,7 +4,7 @@ import { usersMe, getAllUsers } from "@/api/users";
 import { Sidebar } from "@/components/sidebar";
 import { useEffect, useState } from "react";
 import { H2 } from "@/components/headings";
-import { Plus } from "lucide-react";
+import { Mail, Plus } from "lucide-react";
 import { Button } from "@/components/button";
 import { getAllMembers } from "@/api/members";
 
@@ -75,8 +75,8 @@ export default function Users() {
               Members &middot; <span>{rawMembers.length}</span>
             </H2>
             <Button primary>
-              <Plus size={16} />
-              Add
+              <Mail size={16} />
+              Invite
             </Button>
           </div>
           <table className="mt-4 w-full border border-black text-left">
