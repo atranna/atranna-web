@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { LogIn } from "lucide-react";
 import { login } from "@/api/auth";
 import { H1 } from "@/components/headings";
@@ -47,10 +48,16 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button onClick={sendLoginRequest}>
+        <Button primary onClick={sendLoginRequest} fullWidth fill>
           <LogIn size={16} />
           Login
         </Button>
+        <p className="mt-4 text-sm">
+          Need an account?{" "}
+          <Link href="/register" className="text-mauve hover:underline">
+            Register here
+          </Link>
+        </p>
         <p>{loginErrorMessage}</p> {/* TODO: Replace with toast notification */}
       </div>
     </div>
