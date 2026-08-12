@@ -6,18 +6,26 @@ import { useEffect, useState } from "react";
 import { H2 } from "@/components/headings";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/button";
+import { getAllMembers } from "@/api/members";
 
-type UserRow = {
+type User = {
   id: number;
   display_name: string | null;
   email: string | null;
   username: string;
 };
 
+type Member = {
+  organization_id: number;
+  user_id: number;
+  role: string;
+};
+
 export default function Users() {
   const [username, setUsername] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [allUsers, setAllUsers] = useState<UserRow[]>([]);
+  const [rawUsers, setRawUsers] = useState<User[]>([]);
+  const [rawMembers, setRawMembers] = useState<Member[]>([]);
 
   useEffect(() => {
     async function fetchUserData() {
@@ -29,23 +37,42 @@ export default function Users() {
 
     async function fetchAllUsers() {
       const allUsers = await getAllUsers();
-      setAllUsers(allUsers);
+      setRawUsers(allUsers);
+    }
+
+    async function fetchAllMembers() {
+      const allMembers = await getAllMembers(
+        localStorage.getItem("activeOrganization") || "0",
+      );
+      setRawMembers(allMembers);
     }
 
     fetchUserData();
     fetchAllUsers();
+    fetchAllMembers();
   }, []);
   const preferredName = displayName || username || "N/A";
+  const usersWithRoles = rawUsers
+    .map((user) => {
+      const member = rawMembers.find((entry) => entry.user_id === user.id);
+      return member
+        ? {
+            ...user,
+            role: member.role,
+          }
+        : null;
+    })
+    .filter((user): user is User & { role: string } => user !== null);
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar activePage="users" />
+      <Sidebar activePage="members" />
       <main className="flex-1 bg-base text-text">
-        <Header pageName="Users" preferredName={preferredName} />
+        <Header pageName="Members" preferredName={preferredName} />
         <section className="p-4">
           <div className="flex items-center justify-between">
             <H2>
-              Users &middot; <span>{allUsers.length}</span>
+              Members &middot; <span>{rawMembers.length}</span>
             </H2>
             <Button primary>
               <Plus size={16} />
@@ -59,10 +86,11 @@ export default function Users() {
                 <th className="border border-r-black pl-1">Display Name</th>
                 <th className="border border-r-black pl-1">Email</th>
                 <th className="border border-r-black pl-1">Username</th>
+                <th className="border border-r-black pl-1">Role</th>
               </tr>
             </thead>
             <tbody>
-              {allUsers.map((user) => (
+              {usersWithRoles.map((user) => (
                 <tr key={user.id} className="border border-b-black">
                   <td className="border border-r-black pl-1">{user.id}</td>
                   <td className="border border-r-black pl-1">
@@ -74,6 +102,7 @@ export default function Users() {
                   <td className="border border-r-black pl-1">
                     {user.username}
                   </td>
+                  <td className="border border-r-black pl-1">{user.role}</td>
                 </tr>
               ))}
             </tbody>

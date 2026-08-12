@@ -1,6 +1,7 @@
 "use client";
 import { Header } from "@/components/header";
-import { usersMe, getUsers } from "@/api/users";
+import { usersMe } from "@/api/users";
+import { getAllMembers } from "@/api/members";
 import { Sidebar } from "@/components/sidebar";
 import { useEffect, useState } from "react";
 import { H2 } from "@/components/headings";
@@ -42,11 +43,12 @@ export default function Dashboard() {
       setDeviceCount(devices.length);
     }
 
-    async function fetchUsers() {
-      const response = await getUsers();
-      const users = await response.json();
-      console.log("Users fetched:", users);
-      setUserCount(users.length);
+    async function fetchMembers() {
+      const members = await getAllMembers(
+        localStorage.getItem("activeOrganization") || "0",
+      );
+      console.log("Members fetched:", members);
+      setUserCount(members.length);
     }
 
     async function fetchNetworks() {
@@ -58,7 +60,7 @@ export default function Dashboard() {
 
     fetchUserData();
     fetchDevices();
-    fetchUsers();
+    fetchMembers();
     fetchNetworks();
   }, []);
   const preferredName = displayName || username || "N/A";
@@ -77,7 +79,11 @@ export default function Dashboard() {
               content={deviceCount}
               link="/devices"
             />
-            <DashboardCard title="Users" content={userCount} link="/users" />
+            <DashboardCard
+              title="Members"
+              content={userCount}
+              link="/members"
+            />
             <DashboardCard
               title="Networks"
               content={networkCount}

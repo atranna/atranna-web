@@ -174,10 +174,10 @@ export function Sidebar({ activePage }: { activePage: string }) {
           />
           <NavSection title="ORGANIZATION" icon={Building2}>
             <NavItem
-              label="Users"
-              href="/users"
+              label="Members"
+              href="/members"
               icon={Users}
-              active={activePage === "users"}
+              active={activePage === "members"}
             />
             <NavItem
               label="Roles"
