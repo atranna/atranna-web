@@ -1,6 +1,8 @@
-import { Settings, User } from "lucide-react";
+import { LogOut, Mail, Settings, User } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { H1 } from "./headings";
+import { Button } from "./button";
 
 export function Header({
   pageName,
@@ -9,6 +11,13 @@ export function Header({
   pageName: string;
   preferredName: string;
 }) {
+  const router = useRouter();
+
+  const Logout = () => {
+    localStorage.removeItem("jwtToken");
+    router.push("/");
+  };
+
   return (
     <header className="flex items-center justify-between border-b bg-crust p-4 text-text">
       <H1>{pageName}</H1>
@@ -26,6 +35,13 @@ export function Header({
           <User size={16} />
           {preferredName}
         </Link>
+        &middot;
+        <div>
+          <Button onClick={Logout}>
+            <LogOut size={16} />
+            Log Out
+          </Button>
+        </div>
       </div>
     </header>
   );
