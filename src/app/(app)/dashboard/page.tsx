@@ -20,17 +20,9 @@ export default function Dashboard() {
   return (
     <section className="p-4">
       <H2>Inventory</H2>
-      <div className="pt-4 flex flex-wrap gap-x-4">
-        <DashboardCard
-          title="Devices"
-          content={deviceCount}
-          link="/devices"
-        />
-        <DashboardCard
-          title="Members"
-          content={userCount}
-          link="/members"
-        />
+      <div className="flex flex-wrap gap-x-4">
+        <DashboardCard title="Devices" content={deviceCount} link="/devices" />
+        <DashboardCard title="Members" content={userCount} link="/members" />
         <DashboardCard
           title="Networks"
           content={networkCount}
