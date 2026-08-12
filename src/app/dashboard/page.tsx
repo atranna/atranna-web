@@ -1,13 +1,13 @@
 "use client";
-import { Header } from "@/lib/page-components/header";
+import { Header } from "@/components/header";
 import { usersMe, getUsers } from "@/api/users";
-import { Sidebar } from "@/lib/page-components/sidebar";
+import { Sidebar } from "@/components/sidebar";
 import { useEffect, useState } from "react";
-import { H2 } from "@/lib/page-components/headings";
+import { H2 } from "@/components/headings";
 import { getDevices } from "@/api/devices";
 import { getNetworks } from "@/api/networks";
 import { useRouter } from "next/dist/client/components/navigation";
-import { DashboardCard } from "@/lib/page-components/dashboard-card";
+import { DashboardCard } from "@/components/dashboard-card";
 
 export default function Dashboard() {
   const [username, setUsername] = useState("");

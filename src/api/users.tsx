@@ -18,7 +18,7 @@ export async function usersMe() {
   }
 
   const data = await response.json();
-  return data;
+  return data.user;
 }
 
 export async function getAllUsers() {

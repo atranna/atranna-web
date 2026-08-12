@@ -1,10 +1,10 @@
 "use client";
 import { LogIn } from "lucide-react";
 import { login } from "@/api/auth";
-import { H1 } from "@/lib/page-components/headings";
+import { H1 } from "@/components/headings";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button } from "@/lib/page-components/button";
+import { Button } from "@/components/button";
 export default function Login() {
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const router = useRouter();

@@ -4,9 +4,9 @@ import { use, useEffect, useState } from "react";
 import { getDevice } from "@/api/devices";
 import { usersMe } from "@/api/users";
 import "../../globals.css";
-import { Sidebar } from "@/lib/page-components/sidebar";
-import { H1, H2 } from "@/lib/page-components/headings";
-import { Header } from "@/lib/page-components/header";
+import { Sidebar } from "@/components/sidebar";
+import { H1, H2 } from "@/components/headings";
+import { Header } from "@/components/header";
 
 type Device = {
   id: number;
