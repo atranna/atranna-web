@@ -6,8 +6,8 @@ import { H1 } from "@/components/headings";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/button";
+import { toastError, toastSuccess } from "@/components/toast";
 export default function Login() {
-  const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,9 +16,10 @@ export default function Login() {
     const response = await login(username, password);
     if (response.success) {
       localStorage.setItem("jwtToken", response.data.token);
+      toastSuccess("Welcome back");
       router.replace("/dashboard");
     } else {
-      setLoginErrorMessage(response.error || "Login failed");
+      toastError(response.error || "Login failed");
     }
   }
 
@@ -48,7 +49,7 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button primary onClick={sendLoginRequest} fullWidth fill>
+        <Button primary onClick={sendLoginRequest} fullWidth>
           <LogIn size={16} />
           Login
         </Button>
@@ -58,7 +59,6 @@ export default function Login() {
             Register here
           </Link>
         </p>
-        <p>{loginErrorMessage}</p> {/* TODO: Replace with toast notification */}
       </div>
     </div>
   );

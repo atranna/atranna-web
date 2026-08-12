@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { H1 } from "./headings";
 import { Button } from "./button";
 import { useCurrentUser } from "@/lib/user-context";
+import { toastSuccess } from "./toast";
 
 export function Header({ pageName }: { pageName: string }) {
   const router = useRouter();
@@ -12,7 +13,8 @@ export function Header({ pageName }: { pageName: string }) {
   const Logout = () => {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("activeOrganization");
-    router.push("/");
+    toastSuccess("Logged out");
+    router.replace("/login");
   };
 
   return (

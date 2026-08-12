@@ -5,7 +5,6 @@ export function Button({
   type = "button",
   disabled = false,
   fullWidth = false,
-  fill = false,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
@@ -13,7 +12,6 @@ export function Button({
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   fullWidth?: boolean;
-  fill?: boolean;
 }) {
   return (
     <button
