@@ -12,8 +12,8 @@ export default function Me() {
     async function fetchUserData() {
       const userData = await usersMe();
       setUsername(userData.username);
-      setEmail(userData.email);
-      setDisplayname(userData.display_name);
+      setEmail(userData.email || "");
+      setDisplayname(userData.display_name || "");
     }
     fetchUserData();
   }, []);

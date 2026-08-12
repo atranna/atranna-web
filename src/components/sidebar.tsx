@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Building2,
   Users,
@@ -65,8 +65,10 @@ function NavSection({ title, icon: Icon, children }: NavSectionProps) {
   );
 }
 
-export function Sidebar({ activePage }: { activePage: string }) {
+export function Sidebar() {
   const router = useRouter();
+  const pathname = usePathname();
+  const activePage = pathname.split("/")[1] || "dashboard";
   const [organizationName, setOrganizationName] = useState(
     "Select Organization",
   );
@@ -79,11 +81,7 @@ export function Sidebar({ activePage }: { activePage: string }) {
       const organizationId = window.localStorage.getItem("activeOrganization");
 
       if (organizationId) {
-        const response = await getOrganization(organizationId);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
+        const data = await getOrganization(organizationId);
         setOrganizationName(data.name);
       } else {
         setOrganizationName("Select Organization");
@@ -91,17 +89,8 @@ export function Sidebar({ activePage }: { activePage: string }) {
     }
 
     async function fetchOrganizations() {
-      const response = await getOrganizations();
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      setOrganizations(
-        data.map((org: { id: string; name: string }) => ({
-          id: org.id,
-          name: org.name,
-        })),
-      );
+      const data = await getOrganizations();
+      setOrganizations(data);
     }
 
     fetchOrganizations();

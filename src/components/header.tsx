@@ -1,20 +1,17 @@
-import { LogOut, Mail, Settings, User } from "lucide-react";
+import { LogOut, Settings, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { H1 } from "./headings";
 import { Button } from "./button";
+import { useCurrentUser } from "@/lib/user-context";
 
-export function Header({
-  pageName,
-  preferredName,
-}: {
-  pageName: string;
-  preferredName: string;
-}) {
+export function Header({ pageName }: { pageName: string }) {
   const router = useRouter();
+  const { preferredName } = useCurrentUser();
 
   const Logout = () => {
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("activeOrganization");
     router.push("/");
   };
 
