@@ -167,6 +167,11 @@ export default function Users() {
     })
     .filter((user): user is User & { role: string } => user !== null);
 
+  const existingMemberIds = new Set(rawMembers.map((member) => member.user_id));
+  const inviteableUsers = allUsers.filter(
+    (user) => !existingMemberIds.has(user.id),
+  );
+
   return (
     <div className="flex min-h-screen">
       <Sidebar activePage="members" />
@@ -250,7 +255,7 @@ export default function Users() {
                     }
                   >
                     <option value={0}>Select a user</option>
-                    {allUsers.map((user) => (
+                    {inviteableUsers.map((user) => (
                       <option key={user.id} value={user.id}>
                         {user.username}
                       </option>
