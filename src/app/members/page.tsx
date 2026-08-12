@@ -1,10 +1,10 @@
 "use client";
 import { Header } from "@/components/header";
-import { usersMe, getAllUsers } from "@/api/users";
+import { usersMe, getUser } from "@/api/users";
 import { Sidebar } from "@/components/sidebar";
 import { useEffect, useState } from "react";
 import { H2 } from "@/components/headings";
-import { Mail, Plus } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Button } from "@/components/button";
 import { getAllMembers } from "@/api/members";
 
@@ -35,22 +35,32 @@ export default function Users() {
       setDisplayName(userData.display_name);
     }
 
-    async function fetchAllUsers() {
-      const allUsers = await getAllUsers();
-      setRawUsers(allUsers);
-    }
-
-    async function fetchAllMembers() {
+    async function fetchMembersAndUsers() {
       const allMembers = await getAllMembers(
         localStorage.getItem("activeOrganization") || "0",
       );
       setRawMembers(allMembers);
+
+      const userResponses = await Promise.all(
+        allMembers.map((member: Member) => getUser(member.user_id)),
+      );
+      const users = await Promise.all(
+        userResponses.map(async (response) => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch user: " + response.statusText);
+          }
+
+          const data = await response.json();
+          return data.user ?? data;
+        }),
+      );
+      setRawUsers(users);
     }
 
     fetchUserData();
-    fetchAllUsers();
-    fetchAllMembers();
+    fetchMembersAndUsers();
   }, []);
+
   const preferredName = displayName || username || "N/A";
   const usersWithRoles = rawUsers
     .map((user) => {

@@ -57,3 +57,19 @@ export async function getUsers() {
   });
   return response;
 }
+
+export async function getUser(id: number) {
+  const jwtToken = localStorage.getItem("jwtToken");
+  const activeOrganization = localStorage.getItem("activeOrganization");
+  const apiUrl = getRuntimeApiUrl();
+  const usersEndpoint = `${apiUrl}/api/v1/users/${id}`;
+  const response = fetch(usersEndpoint, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwtToken}`,
+      "X-Org-ID": `${activeOrganization}`,
+    },
+  });
+  return response;
+}
