@@ -98,7 +98,7 @@ export function Sidebar() {
     fetchOrganizationName();
   }, []);
   return (
-    <aside className="w-64 border-r border-text bg-mantle text-text">
+    <aside className="w-64 border-r border-surface-0 bg-mantle text-text">
       <div className="px-3 pt-4">
         <h3 className="text-2xl font-bold text-mauve">
           <Link href="/dashboard" className="hover:underline">

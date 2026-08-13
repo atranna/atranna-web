@@ -18,7 +18,7 @@ export function Header({ pageName }: { pageName: string }) {
   };
 
   return (
-    <header className="flex items-center justify-between border-b bg-crust p-4 text-text">
+    <header className="flex items-center justify-between border-b border-surface-0 bg-crust p-4 text-text">
       <H1>{pageName}</H1>
 
       <div className="flex items-center gap-2">
