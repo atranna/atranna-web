@@ -48,18 +48,20 @@ export function Modal({
       onClick={onClose}
     >
       <div
-        className={`w-full ${maxWidth} border border-black bg-mantle text-text p-6`}
+        className={`w-full ${maxWidth} border border-surface-0 bg-mantle text-text p-6`}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
             <h2 className="text-2xl font-semibold">{title}</h2>
-            {subtitle ? <p className="mt-1 text-sm text-gray-700">{subtitle}</p> : null}
+            {subtitle ? (
+              <p className="mt-1 text-sm text-gray-700">{subtitle}</p>
+            ) : null}
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="flex h-10 w-10 items-center justify-center border border-black bg-gray-100 hover:bg-gray-200 active:bg-gray-300 cursor-pointer"
+            className="flex h-10 w-10 items-center justify-center border border-surface-0 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 cursor-pointer"
             aria-label={`Close ${title}`}
           >
             <X size={18} />

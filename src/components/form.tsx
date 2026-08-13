@@ -5,7 +5,7 @@ import type {
 } from "react";
 
 export const inputClass =
-  "border border-black px-3 py-2 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-black/20";
+  "border border-surface-0 px-3 py-2 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-black/20";
 
 export function Input(props: InputHTMLAttributes<HTMLInputElement>) {
   return (

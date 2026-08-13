@@ -13,27 +13,35 @@ export function DataTable<T extends { id: number | string }>({
   rows: T[];
 }) {
   return (
-    <table className="mt-4 w-full border border-black text-left">
-      <thead className="bg-gray-200">
-        <tr>
-          {columns.map((column) => (
-            <th key={column.header} className="border border-r-black pl-1">
-              {column.header}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row) => (
-          <tr key={row.id} className="border border-b-black">
+    <div className="mt-4 overflow-hidden rounded-lg border border-surface-0">
+      <table className="w-full text-left text-sm">
+        <thead className="bg-crust">
+          <tr>
             {columns.map((column) => (
-              <td key={column.header} className="border border-r-black pl-1">
-                {column.render(row)}
-              </td>
+              <th
+                key={column.header}
+                className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-subtext-0"
+              >
+                {column.header}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr
+              key={row.id}
+              className="border-t border-surface-0 text-subtext-1 transition-colors odd:bg-base even:bg-mantle hover:bg-surface-0"
+            >
+              {columns.map((column) => (
+                <td key={column.header} className="px-4 py-3">
+                  {column.render(row)}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
