@@ -27,23 +27,23 @@ export default function Login() {
     <div
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat text-latte-text dark:text-mocha-text"
       style={{
-        backgroundImage: "url('/taylor-vick-M5tzZtFCOfs-unsplash.jpg')",
+        backgroundImage: "url('/massimo-botturi-zFYUsLk_50Y-unsplash.jpg')",
       }}
     >
-      <div className="absolute inset-0 backdrop-blur-sm bg-latte-base dark:bg-mocha-base/20" />
+      <div className="absolute inset-0 backdrop-blur-sm bg-latte-base/50 dark:bg-mocha-base/50" />
       <div className="relative w-full max-w-sm p-6 border border-overlay-0 rounded-lg bg-latte-base dark:bg-mocha-base text-latte-text dark:text-mocha-text">
-        <div className="text-center mb-6">
+        <div className="text-center mb-6 text-latte-mauve dark:text-mocha-mauve">
           <H1>ATRANNA</H1>
         </div>
         <input
-          className="rounded-lg border border-overlay-0 px-3 py-2 mb-4 w-full hover:bg-gray-200 focus:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-black/20"
+          className="rounded-lg border border-overlay-0 px-3 py-2 mb-4 w-full hover:bg-latte-crust dark:hover:bg-mocha-crust focus:bg-latte-base dark:focus:bg-mocha-base focus:outline-none focus:ring-2 focus:ring-black/20"
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
-          className="rounded-lg border border-overlay-0 px-3 py-2 mb-4 w-full hover:bg-gray-200 focus:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-black/20"
+          className="rounded-lg border border-overlay-0 px-3 py-2 mb-4 w-full hover:bg-latte-crust dark:hover:bg-mocha-crust focus:bg-latte-base dark:focus:bg-mocha-base focus:outline-none focus:ring-2 focus:ring-black/20"
           type="password"
           placeholder="Password"
           value={password}
