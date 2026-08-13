@@ -3,9 +3,11 @@ import type {
   ReactNode,
   SelectHTMLAttributes,
 } from "react";
+import { Button } from "./button";
+import { Plus } from "lucide-react";
 
 export const inputClass =
-  "rounded-lg border border-surface-0 px-3 py-2 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-black/20";
+  "rounded-lg border border-latte-surface-0 dark:border-mocha-surface-0 px-3 py-2 hover:bg-latte-crust dark:hover:bg-mocha-crust focus:bg-latte-base dark:focus:bg-mocha-base focus:outline-none";
 
 export function Input(props: InputHTMLAttributes<HTMLInputElement>) {
   return (
@@ -36,7 +38,7 @@ export function FormField({
 }) {
   return (
     <label
-      className={`grid gap-2 text-sm font-medium text-gray-900 ${className}`.trim()}
+      className={`grid gap-2 text-sm font-medium text-latte-text dark:text-mocha-text ${className}`.trim()}
     >
       {label}
       {children}
@@ -62,21 +64,13 @@ export function FormActions({
   return (
     <>
       <div className="mt-6 flex justify-end gap-3">
-        <button
-          type="button"
-          onClick={onCancel}
-          disabled={submitting}
-          className="border border-black px-4 py-2 hover:bg-gray-300 active:bg-gray-200 cursor-pointer"
-        >
+        <Button type="button" onClick={onCancel} disabled={submitting}>
           {cancelLabel}
-        </button>
-        <button
-          type="submit"
-          disabled={submitting || disabled}
-          className="border border-mauve text-mauve bg-gray-200 px-4 py-2 text-black hover:bg-gray-300 active:bg-gray-400 cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
-        >
+        </Button>
+        <Button primary type="submit" disabled={submitting || disabled}>
+          <Plus size={18} />
           {submitting ? submittingLabel : submitLabel}
-        </button>
+        </Button>
       </div>
     </>
   );

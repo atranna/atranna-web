@@ -25,13 +25,13 @@ export default function Login() {
 
   return (
     <div
-      className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat text-text"
+      className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat text-latte-text dark:text-mocha-text"
       style={{
         backgroundImage: "url('/taylor-vick-M5tzZtFCOfs-unsplash.jpg')",
       }}
     >
-      <div className="absolute inset-0 backdrop-blur-sm bg-base/20" />
-      <div className="relative w-full max-w-sm p-6 border border-overlay-0 rounded-lg bg-base text-text">
+      <div className="absolute inset-0 backdrop-blur-sm bg-latte-base dark:bg-mocha-base/20" />
+      <div className="relative w-full max-w-sm p-6 border border-overlay-0 rounded-lg bg-latte-base dark:bg-mocha-base text-latte-text dark:text-mocha-text">
         <div className="text-center mb-6">
           <H1>ATRANNA</H1>
         </div>
@@ -55,7 +55,10 @@ export default function Login() {
         </Button>
         <p className="mt-4 text-sm">
           Need an account?{" "}
-          <Link href="/register" className="text-mauve hover:underline">
+          <Link
+            href="/register"
+            className="text-latte-mauve dark:text-mocha-mauve hover:underline"
+          >
             Register here
           </Link>
         </p>

@@ -22,7 +22,7 @@ export default function Device({
     <section className="p-4">
       <H2>{device?.hostname}</H2>
       <section className="pt-4 gap-x-4 flex flex-col">
-        <div className="border border-text p-4 max-w-100">
+        <div className="border border-latte-text dark:border-mocha-text p-4 max-w-100">
           <H2>Device Details</H2>
           <ul className="mt-2 space-y-1">
             <li>ID: {device?.id || "Loading..."}</li>

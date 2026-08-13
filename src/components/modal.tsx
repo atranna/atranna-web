@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { X } from "lucide-react";
+import { Button } from "./button";
 
 export function Modal({
   open,
@@ -48,24 +49,21 @@ export function Modal({
       onClick={onClose}
     >
       <div
-        className={`w-full ${maxWidth} border border-surface-0 bg-mantle text-text p-6`}
+        className={`w-full ${maxWidth} rounded-lg border border-surface-0 bg-latte-mantle dark:bg-mocha-mantle text-latte-text dark:text-mocha-text p-6`}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
             <h2 className="text-2xl font-semibold">{title}</h2>
             {subtitle ? (
-              <p className="mt-1 text-sm text-gray-700">{subtitle}</p>
+              <p className="mt-1 text-sm text-latte-overlay-0 dark:text-mocha-overlay-0">
+                {subtitle}
+              </p>
             ) : null}
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="flex h-10 w-10 items-center justify-center border border-surface-0 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 cursor-pointer"
-            aria-label={`Close ${title}`}
-          >
+          <Button type="button" onClick={onClose} className="h-10 w-10">
             <X size={18} />
-          </button>
+          </Button>
         </div>
         {children}
       </div>

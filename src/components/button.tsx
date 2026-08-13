@@ -5,6 +5,7 @@ export function Button({
   type = "button",
   disabled = false,
   fullWidth = false,
+  className = "",
 }: {
   children: React.ReactNode;
   onClick?: () => void;
@@ -12,6 +13,7 @@ export function Button({
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   fullWidth?: boolean;
+  className?: string;
 }) {
   return (
     <button
@@ -19,9 +21,12 @@ export function Button({
       onClick={onClick}
       disabled={disabled}
       className={
-        "rounded-lg flex items-center gap-2 bg-gray-200 px-3 py-2 border cursor-pointer hover:underline hover:bg-surface-0 active:bg-surface-1 disabled:cursor-not-allowed disabled:opacity-70" +
-        (primary ? " border-mauve text-mauve" : "") +
-        (fullWidth ? " w-full" : "")
+        "rounded-lg flex items-center gap-2 hover:bg-latte-surface-0 dark:hover:bg-mocha-surface-0 active:bg-latte-surface-1 dark:active:bg-mocha-surface-1 px-3 py-2 border cursor-pointer hover:underline disabled:cursor-not-allowed disabled:opacity-70" +
+        (primary
+          ? " border-mauve text-latte-mauve dark:text-mocha-mauve"
+          : "") +
+        (fullWidth ? " w-full" : "") +
+        (className ? ` ${className}` : "")
       }
     >
       {children}

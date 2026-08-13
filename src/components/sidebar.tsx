@@ -35,9 +35,14 @@ function NavItem({
     <li>
       <Link
         href={href}
-        className={`flex items-center gap-2 rounded px-2 py-1 hover:bg-base hover:text-mauve ${
-          active ? "bg-base text-mauve" : ""
-        }`}
+        className={`flex items-center gap-2 rounded px-2 py-1
+  hover:bg-latte-base dark:hover:bg-mocha-base
+  hover:text-latte-mauve dark:hover:text-mocha-mauve
+  ${
+    active
+      ? "bg-latte-base dark:bg-mocha-base text-latte-mauve dark:text-mocha-mauve"
+      : ""
+  }`}
       >
         <Icon size={16} />
         <span>{label}</span>
@@ -98,9 +103,9 @@ export function Sidebar() {
     fetchOrganizationName();
   }, []);
   return (
-    <aside className="w-64 border-r border-surface-0 bg-mantle text-text">
+    <aside className="w-64 border-r border-latte-surface-0 dark:border-mocha-surface-0 bg-latte-mantle dark:bg-mocha-mantle text-latte-text dark:text-mocha-text">
       <div className="px-3 pt-4">
-        <h3 className="text-2xl font-bold text-mauve">
+        <h3 className="text-2xl font-bold text-latte-mauve dark:text-mocha-mauve">
           <Link href="/dashboard" className="hover:underline">
             ATRANNA
           </Link>
@@ -112,12 +117,14 @@ export function Sidebar() {
               {organizationName}
             </h4>
           </summary>
-          <div className="border mt-2">
-            <h5 className="font-bold pl-1 text-mauve">Organizations</h5>
+          <div className="border border-latte-surface-0 dark:border-mocha-surface-0 mt-2">
+            <h5 className="font-bold pl-1 text-latte-mauve dark:text-mocha-mauve">
+              Organizations
+            </h5>
             {organizations.map((org) => (
               <button
                 key={org.id}
-                className="flex items-center pl-1 cursor-pointer hover:bg-base hover:text-mauve w-full"
+                className="flex items-center pl-1 cursor-pointer hover:bg-latte-base dark:hover:bg-mocha-base hover:text-latte-mauve dark:hover:text-mocha-mauve w-full"
                 onClick={() => {
                   window.localStorage.setItem("activeOrganization", org.id);
                   setOrganizationName(org.name);
@@ -128,9 +135,11 @@ export function Sidebar() {
                 {org.name}
               </button>
             ))}
-            <h5 className="font-bold pl-1 text-mauve">Actions</h5>
+            <h5 className="font-bold pl-1 text-latte-mauve dark:text-mocha-mauve">
+              Actions
+            </h5>
             <button
-              className="flex items-center pl-1 cursor-pointer hover:bg-base hover:text-mauve w-full"
+              className="flex items-center pl-1 cursor-pointer hover:bg-latte-base dark:hover:bg-mocha-base hover:text-latte-mauve dark:hover:text-mocha-mauve w-full"
               onClick={() => {
                 router.push("/organizations/settings");
               }}
@@ -139,7 +148,7 @@ export function Sidebar() {
               Organization Settings
             </button>
             <button
-              className="flex items-center pl-1 cursor-pointer hover:bg-base hover:text-mauve w-full"
+              className="flex items-center pl-1 cursor-pointer hover:bg-latte-base dark:hover:bg-mocha-base hover:text-latte-mauve dark:hover:text-mocha-mauve w-full"
               onClick={() => {
                 router.push("/organizations/new");
               }}
