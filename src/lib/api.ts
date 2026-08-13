@@ -1,5 +1,3 @@
-import { getRuntimeApiUrl } from "./runtime-config";
-
 export class ApiError extends Error {
   status: number;
 
@@ -29,7 +27,6 @@ export async function apiFetch<T = unknown>(
   path: string,
   { method = "GET", body, headers, includeOrg = true }: ApiFetchOptions = {},
 ): Promise<T> {
-  const apiUrl = getRuntimeApiUrl();
   const token = getJwtToken();
 
   const baseHeaders: Record<string, string> = {
@@ -44,7 +41,7 @@ export async function apiFetch<T = unknown>(
     baseHeaders["X-Org-ID"] = getActiveOrganization();
   }
 
-  const response = await fetch(`${apiUrl}/api/v1${path}`, {
+  const response = await fetch(`/api/v1${path}`, {
     method,
     headers: { ...baseHeaders, ...headers },
     body: body === undefined ? undefined : JSON.stringify(body),
