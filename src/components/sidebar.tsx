@@ -14,6 +14,9 @@ import {
   LayoutDashboard,
   Plus,
   Settings,
+  Factory,
+  FileBox,
+  Monitor,
 } from "lucide-react";
 import { Hr } from "./hr";
 import { useState, useEffect } from "react";
@@ -30,19 +33,17 @@ function NavItem({
   href,
   icon: Icon,
   active,
-}: NavItemProps & { active?: boolean }) {
+  planned,
+}: NavItemProps & { active?: boolean; planned?: boolean }) {
   return (
     <li>
       <Link
-        href={href}
+        href={planned ? "" : href}
         className={`flex items-center gap-2 rounded px-2 py-1
   hover:bg-latte-base dark:hover:bg-mocha-base
   hover:text-latte-mauve dark:hover:text-mocha-mauve
-  ${
-    active
-      ? "bg-latte-base dark:bg-mocha-base text-latte-mauve dark:text-mocha-mauve"
-      : ""
-  }`}
+  ${active ? "bg-latte-base dark:bg-mocha-base text-latte-mauve dark:text-mocha-mauve" : ""}
+  ${planned ? "opacity-50 cursor-not-allowed" : ""}`}
       >
         <Icon size={16} />
         <span>{label}</span>
@@ -182,12 +183,14 @@ export function Sidebar() {
               href="/roles"
               icon={Shield}
               active={activePage === "roles"}
+              planned
             />
             <NavItem
               label="Permissions"
               href="/permissions"
               icon={Scroll}
               active={activePage === "permissions"}
+              planned
             />
           </NavSection>
 
@@ -200,10 +203,35 @@ export function Sidebar() {
             />
 
             <NavItem
+              label="Types"
+              href="/device-types"
+              icon={Monitor}
+              active={activePage === "device-types"}
+              planned
+            />
+
+            <NavItem
+              label="Vendors"
+              href="/vendors"
+              icon={Factory}
+              active={activePage === "vendors"}
+              planned
+            />
+
+            <NavItem
+              label="Models"
+              href="/models"
+              icon={FileBox}
+              active={activePage === "models"}
+              planned
+            />
+
+            <NavItem
               label="Interfaces"
               href="/interfaces"
               icon={EthernetPort}
               active={activePage === "interfaces"}
+              planned
             />
           </NavSection>
 
@@ -213,12 +241,14 @@ export function Sidebar() {
               href="/networks"
               icon={Network}
               active={activePage === "networks"}
+              planned
             />
             <NavItem
               label="Connections"
               href="/connections"
               icon={Cable}
               active={activePage === "connections"}
+              planned
             />
           </NavSection>
         </ul>
