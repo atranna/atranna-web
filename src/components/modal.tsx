@@ -49,7 +49,7 @@ export function Modal({
       onClick={onClose}
     >
       <div
-        className={`w-full ${maxWidth} rounded-lg border border-surface-0 bg-latte-mantle dark:bg-mocha-mantle text-latte-text dark:text-mocha-text p-6`}
+        className={`w-full ${maxWidth} rounded-lg border border-latte-surface-0 dark:border-mocha-surface-0 bg-latte-mantle dark:bg-mocha-mantle text-latte-text dark:text-mocha-text p-6`}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mb-6 flex items-start justify-between gap-4">
