@@ -20,6 +20,8 @@ import {
   Earth,
   MapPin,
   ChevronRight,
+  Share2,
+  Globe,
 } from "lucide-react";
 import { Hr } from "./hr";
 import { useState, useEffect } from "react";
@@ -374,6 +376,34 @@ export function Sidebar() {
               href="/connections"
               icon={Cable}
               active={activePage === "connections"}
+              planned
+            />
+            <NavItem
+              label="IP Addresses"
+              href="/ip-addresses"
+              icon={EthernetPort}
+              active={activePage === "ip-addresses"}
+              planned
+            />
+            <NavItem
+              label="Subnets"
+              href="/subnets"
+              icon={Network}
+              active={activePage === "subnets"}
+              planned
+            />
+            <NavItem
+              label="VLANs"
+              href="/vlans"
+              icon={Share2}
+              active={activePage === "vlans"}
+              planned
+            />
+            <NavItem
+              label="DNS Records"
+              href="/dns-records"
+              icon={Globe}
+              active={activePage === "dns-records"}
               planned
             />
           </NavSection>
