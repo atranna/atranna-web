@@ -118,7 +118,7 @@ export function Sidebar() {
               {organizationName}
             </h4>
           </summary>
-          <div className="border border-latte-surface-0 dark:border-mocha-surface-0 mt-2">
+          <div className="border border-latte-surface-0 dark:border-mocha-surface-0 rounded-lg mt-2">
             <h5 className="font-bold pl-1 text-latte-mauve dark:text-mocha-mauve">
               Organizations
             </h5>
