@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  Map,
   Building2,
   Users,
   Box,
@@ -17,6 +18,9 @@ import {
   Factory,
   FileBox,
   Monitor,
+  Earth,
+  MapPin,
+  ChevronRight,
 } from "lucide-react";
 import { Hr } from "./hr";
 import { useState, useEffect } from "react";
@@ -55,20 +59,60 @@ function NavItem({
 type NavSectionProps = {
   title: string;
   icon: LucideIcon;
+  expanded: boolean;
+  onToggle: () => void;
   children: React.ReactNode;
 };
 
-function NavSection({ title, icon: Icon, children }: NavSectionProps) {
+function NavSection({
+  title,
+  icon: Icon,
+  expanded,
+  onToggle,
+  children,
+}: NavSectionProps) {
   return (
     <li className="mt-1">
-      <div className="flex items-center gap-2 py-2">
-        <Icon size={20} />
-        <h4 className="font-bold">{title}</h4>
-      </div>
+      <button
+        onClick={onToggle}
+        className="flex w-full cursor-pointer items-center justify-between gap-2 py-2 hover:text-latte-mauve dark:hover:text-mocha-mauve"
+      >
+        <div className="flex items-center gap-2">
+          <Icon size={20} />
+          <h4 className="font-bold">{title}</h4>
+        </div>
+        <ChevronRight
+          size={16}
+          className={`transition-transform ${expanded ? "rotate-90" : ""}`}
+        />
+      </button>
 
-      <ul className="ml-4 space-y-1">{children}</ul>
+      {expanded && <ul className="ml-4 space-y-1">{children}</ul>}
     </li>
   );
+}
+
+type SectionKey = "sites" | "organization" | "resources" | "network";
+
+const sectionSegments: Record<SectionKey, string[]> = {
+  sites: ["sites", "locations", "regions"],
+  organization: ["members", "roles", "permissions"],
+  resources: [
+    "racks",
+    "devices",
+    "device-types",
+    "vendors",
+    "models",
+    "interfaces",
+  ],
+  network: ["networks", "connections"],
+};
+
+function getActiveSection(segment: string): SectionKey | null {
+  for (const [key, segments] of Object.entries(sectionSegments)) {
+    if (segments.includes(segment)) return key as SectionKey;
+  }
+  return null;
 }
 
 export function Sidebar() {
@@ -81,6 +125,21 @@ export function Sidebar() {
   const [organizations, setOrganizations] = useState<
     Array<{ id: string; name: string }>
   >([]);
+  const [collapsed, setCollapsed] = useState<Record<SectionKey, boolean>>({
+    sites: true,
+    organization: true,
+    resources: true,
+    network: true,
+  });
+  const [lastPath, setLastPath] = useState(pathname);
+  const activeSection = getActiveSection(activePage);
+
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
+    if (activeSection) {
+      setCollapsed((prev) => ({ ...prev, [activeSection]: false }));
+    }
+  }
 
   useEffect(() => {
     async function fetchOrganizationName() {
@@ -104,7 +163,7 @@ export function Sidebar() {
     fetchOrganizationName();
   }, []);
   return (
-    <aside className="w-64 border-r border-latte-surface-0 dark:border-mocha-surface-0 bg-latte-mantle dark:bg-mocha-mantle text-latte-text dark:text-mocha-text">
+    <aside className="sticky top-0 h-screen w-64 overflow-y-auto border-r border-latte-surface-0 dark:border-mocha-surface-0 bg-latte-mantle dark:bg-mocha-mantle text-latte-text dark:text-mocha-text">
       <div className="px-3 pt-4">
         <h3 className="text-2xl font-bold text-latte-mauve dark:text-mocha-mauve">
           <Link href="/dashboard" className="hover:underline">
@@ -165,13 +224,47 @@ export function Sidebar() {
 
       <div className="px-3">
         <ul className="mt-4">
-          <NavItem
-            label="Dashboard"
-            href="/dashboard"
-            icon={LayoutDashboard}
-            active={activePage === "dashboard"}
-          />
-          <NavSection title="ORGANIZATION" icon={Building2}>
+          <NavSection
+            title="SITES"
+            icon={Map}
+            expanded={!collapsed.sites}
+            onToggle={() =>
+              setCollapsed((prev) => ({ ...prev, sites: !prev.sites }))
+            }
+          >
+            <NavItem
+              label="Sites"
+              href="/sites"
+              icon={Building2}
+              active={activePage === "sites"}
+              planned
+            />
+            <NavItem
+              label="Locations"
+              href="/locations"
+              icon={MapPin}
+              active={activePage === "locations"}
+              planned
+            />
+            <NavItem
+              label="Regions"
+              href="/regions"
+              icon={Earth}
+              active={activePage === "regions"}
+              planned
+            />
+          </NavSection>
+          <NavSection
+            title="ORGANIZATION"
+            icon={Building2}
+            expanded={!collapsed.organization}
+            onToggle={() =>
+              setCollapsed((prev) => ({
+                ...prev,
+                organization: !prev.organization,
+              }))
+            }
+          >
             <NavItem
               label="Members"
               href="/members"
@@ -194,7 +287,24 @@ export function Sidebar() {
             />
           </NavSection>
 
-          <NavSection title="RESOURCES" icon={Box}>
+          <NavSection
+            title="RESOURCES"
+            icon={Box}
+            expanded={!collapsed.resources}
+            onToggle={() =>
+              setCollapsed((prev) => ({
+                ...prev,
+                resources: !prev.resources,
+              }))
+            }
+          >
+            <NavItem
+              label="Racks"
+              href="/racks"
+              icon={Box}
+              active={activePage === "racks"}
+              planned
+            />
             <NavItem
               label="Devices"
               href="/devices"
@@ -235,7 +345,17 @@ export function Sidebar() {
             />
           </NavSection>
 
-          <NavSection title="NETWORK" icon={Network}>
+          <NavSection
+            title="NETWORKS"
+            icon={Network}
+            expanded={!collapsed.network}
+            onToggle={() =>
+              setCollapsed((prev) => ({
+                ...prev,
+                network: !prev.network,
+              }))
+            }
+          >
             <NavItem
               label="Networks"
               href="/networks"
