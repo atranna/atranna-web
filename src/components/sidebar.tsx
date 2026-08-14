@@ -12,7 +12,6 @@ import {
   Cable,
   Scroll,
   Shield,
-  LayoutDashboard,
   Plus,
   Settings,
   Factory,
@@ -136,9 +135,16 @@ export function Sidebar() {
 
   if (lastPath !== pathname) {
     setLastPath(pathname);
+    const newCollapsed: Record<SectionKey, boolean> = {
+      sites: true,
+      organization: true,
+      resources: true,
+      network: true,
+    };
     if (activeSection) {
-      setCollapsed((prev) => ({ ...prev, [activeSection]: false }));
+      newCollapsed[activeSection] = false;
     }
+    setCollapsed(newCollapsed);
   }
 
   useEffect(() => {
