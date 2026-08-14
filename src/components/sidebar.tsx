@@ -149,7 +149,7 @@ export function Sidebar() {
               Organization Settings
             </button>
             <button
-              className="flex items-center pl-1 cursor-pointer hover:bg-latte-base dark:hover:bg-mocha-base hover:text-latte-mauve dark:hover:text-mocha-mauve w-full"
+              className="flex items-center pl-1 cursor-pointer hover:bg-latte-base dark:hover:bg-mocha-base hover:text-latte-mauve dark:hover:text-mocha-mauve w-full rounded-b-lg"
               onClick={() => {
                 router.push("/organizations/new");
               }}
