@@ -331,7 +331,7 @@ export function Sidebar() {
             />
 
             <H4>
-              <span className="text-latte-lavender dark:text-mocha-lavender">
+              <span className="text-latte-pink dark:text-mocha-pink">
                 Device Types
               </span>
             </H4>
@@ -361,7 +361,7 @@ export function Sidebar() {
             />
 
             <H4>
-              <span className="text-latte-lavender dark:text-mocha-lavender">
+              <span className="text-latte-pink dark:text-mocha-pink">
                 Device Components
               </span>
             </H4>
