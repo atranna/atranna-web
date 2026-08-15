@@ -22,6 +22,7 @@ import {
   ChevronRight,
   Share2,
   Globe,
+  Cloud,
 } from "lucide-react";
 import { Hr } from "./hr";
 import { useState, useEffect } from "react";
@@ -93,7 +94,12 @@ function NavSection({
   );
 }
 
-type SectionKey = "sites" | "organization" | "resources" | "network";
+type SectionKey =
+  | "sites"
+  | "organization"
+  | "resources"
+  | "network"
+  | "virtualization";
 
 const sectionSegments: Record<SectionKey, string[]> = {
   sites: ["sites", "locations", "regions"],
@@ -107,6 +113,7 @@ const sectionSegments: Record<SectionKey, string[]> = {
     "interfaces",
   ],
   network: ["networks", "connections"],
+  virtualization: ["virtual-machines", "containers", "hypervisors", "clusters"],
 };
 
 function getActiveSection(segment: string): SectionKey | null {
@@ -131,6 +138,7 @@ export function Sidebar() {
     organization: true,
     resources: true,
     network: true,
+    virtualization: true,
   });
   const [lastPath, setLastPath] = useState(pathname);
   const activeSection = getActiveSection(activePage);
@@ -142,6 +150,7 @@ export function Sidebar() {
       organization: true,
       resources: true,
       network: true,
+      virtualization: true,
     };
     if (activeSection) {
       newCollapsed[activeSection] = false;
@@ -404,6 +413,46 @@ export function Sidebar() {
               href="/dns-records"
               icon={Globe}
               active={activePage === "dns-records"}
+              planned
+            />
+          </NavSection>
+          <NavSection
+            title="VIRTUALIZATION"
+            icon={Cloud}
+            expanded={!collapsed.virtualization}
+            onToggle={() =>
+              setCollapsed((prev) => ({
+                ...prev,
+                virtualization: !prev.virtualization,
+              }))
+            }
+          >
+            <NavItem
+              label="Virtual Machines"
+              href="/virtual-machines"
+              icon={Monitor}
+              active={activePage === "virtual-machines"}
+              planned
+            />
+            <NavItem
+              label="Containers"
+              href="/containers"
+              icon={Box}
+              active={activePage === "containers"}
+              planned
+            />
+            <NavItem
+              label="Hypervisors"
+              href="/hypervisors"
+              icon={Server}
+              active={activePage === "hypervisors"}
+              planned
+            />
+            <NavItem
+              label="Clusters"
+              href="/clusters"
+              icon={Network}
+              active={activePage === "clusters"}
               planned
             />
           </NavSection>
