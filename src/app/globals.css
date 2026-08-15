@@ -59,3 +59,19 @@
   --color-mocha-flamingo: #f2cdcd;
   --color-mocha-rosewater: #f5e0dc;
 }
+
+:root {
+  --color-mantle: var(--color-latte-mantle);
+  --color-text: var(--color-latte-text);
+  --color-green: var(--color-latte-green);
+  --color-red: var(--color-latte-red);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-mantle: var(--color-mocha-mantle);
+    --color-text: var(--color-mocha-text);
+    --color-green: var(--color-mocha-green);
+    --color-red: var(--color-mocha-red);
+  }
+}

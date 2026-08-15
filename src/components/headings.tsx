@@ -1,5 +1,8 @@
+const textMauve = "text-latte-mauve dark:text-mocha-mauve";
+const textPink = "text-latte-pink dark:text-mocha-pink";
+
 export function H1({ children }: { children: React.ReactNode }) {
-  return <h1 className="text-2xl font-bold">{children}</h1>;
+  return <h1 className={"text-2xl font-bold " + textMauve}>{children}</h1>;
 }
 
 export function H2({ children }: { children: React.ReactNode }) {

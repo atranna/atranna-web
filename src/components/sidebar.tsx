@@ -27,7 +27,7 @@ import {
 import { Hr } from "./hr";
 import { useState, useEffect } from "react";
 import { getOrganization, getOrganizations } from "@/api/organizations";
-import { H3, H4 } from "./headings";
+import { H1, H2, H3, H4 } from "./headings";
 
 type NavItemProps = {
   label: string;
@@ -183,11 +183,11 @@ export function Sidebar() {
   return (
     <aside className="sticky top-0 h-screen w-64 overflow-y-auto border-r border-latte-surface-0 dark:border-mocha-surface-0 bg-latte-mantle dark:bg-mocha-mantle text-latte-text dark:text-mocha-text">
       <div className="px-3 pt-4">
-        <h3 className="text-2xl font-bold text-latte-mauve dark:text-mocha-mauve">
+        <H1>
           <Link href="/dashboard" className="hover:underline">
             ATRANNA
           </Link>
-        </h3>
+        </H1>
 
         <details className="mt-1 cursor-pointer">
           <summary className="list-none">
@@ -330,11 +330,7 @@ export function Sidebar() {
               active={activePage === "devices"}
             />
 
-            <H4>
-              <span className="text-latte-pink dark:text-mocha-pink">
-                Device Types
-              </span>
-            </H4>
+            <H4>Device Types</H4>
 
             <NavItem
               label="Device Types"
@@ -360,11 +356,7 @@ export function Sidebar() {
               planned
             />
 
-            <H4>
-              <span className="text-latte-pink dark:text-mocha-pink">
-                Device Components
-              </span>
-            </H4>
+            <H4>Device Components</H4>
 
             <NavItem
               label="Interfaces"
