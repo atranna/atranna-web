@@ -27,6 +27,7 @@ import {
 import { Hr } from "./hr";
 import { useState, useEffect } from "react";
 import { getOrganization, getOrganizations } from "@/api/organizations";
+import { H3, H4 } from "./headings";
 
 type NavItemProps = {
   label: string;
@@ -329,8 +330,14 @@ export function Sidebar() {
               active={activePage === "devices"}
             />
 
+            <H4>
+              <span className="text-latte-lavender dark:text-mocha-lavender">
+                Device Types
+              </span>
+            </H4>
+
             <NavItem
-              label="Types"
+              label="Device Types"
               href="/device-types"
               icon={Monitor}
               active={activePage === "device-types"}
@@ -339,19 +346,25 @@ export function Sidebar() {
 
             <NavItem
               label="Vendors"
-              href="/vendors"
+              href="/device-vendors"
               icon={Factory}
               active={activePage === "vendors"}
               planned
             />
 
             <NavItem
-              label="Models"
-              href="/models"
+              label="Device Models"
+              href="/device-models"
               icon={FileBox}
-              active={activePage === "models"}
+              active={activePage === "device-models"}
               planned
             />
+
+            <H4>
+              <span className="text-latte-lavender dark:text-mocha-lavender">
+                Device Components
+              </span>
+            </H4>
 
             <NavItem
               label="Interfaces"
