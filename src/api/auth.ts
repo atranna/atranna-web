@@ -1,4 +1,16 @@
-import { apiFetch } from "@/lib/api";
+import { apiFetch, getJwtToken } from "@/lib/api";
+
+export async function validateToken(): Promise<boolean> {
+  const token = getJwtToken();
+  if (!token) return false;
+
+  try {
+    await apiFetch("/auth/validate-token", { includeOrg: false });
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 export type LoginResult =
   | { data: { token: string }; success: true }

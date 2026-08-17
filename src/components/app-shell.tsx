@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Sidebar } from "@/components/sidebar";
 import { Header } from "@/components/header";
+import { validateToken } from "@/api/auth";
 
 const pageNames: Record<string, string> = {
   dashboard: "Dashboard",
@@ -24,6 +25,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     if (!localStorage.getItem("activeOrganization")) {
       localStorage.setItem("activeOrganization", "0");
     }
+
+    validateToken().then((valid) => {
+      if (!valid) {
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("activeOrganization");
+        router.replace("/login");
+      }
+    });
   }, [router]);
 
   const segment = pathname.split("/")[1] || "dashboard";
