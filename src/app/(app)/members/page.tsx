@@ -7,7 +7,7 @@ import type { InviteUserFormState, Member, User } from "@/lib/types";
 import { SectionHeader } from "@/components/section-header";
 import { DataTable } from "@/components/data-table";
 import { Modal } from "@/components/modal";
-import { FormField, Select, FormActions } from "@/components/form";
+import { FormField, Input, Select, FormActions } from "@/components/form";
 import { toastError, toastSuccess } from "@/components/toast";
 import { Button } from "@/components/button";
 
@@ -27,6 +27,7 @@ export default function Users() {
     useState<InviteUserFormState>(emptyInviteUserForm);
   const [isSubmittingInviteUser, setIsSubmittingInviteUser] = useState(false);
   const [isSubmittingDeleteUser, setIsSubmittingDeleteUser] = useState(false);
+  const [deleteConfirmUsername, setDeleteConfirmUsername] = useState("");
 
   const [allUsers, setAllUsers] = useState<User[]>([]);
   const [rawUsers, setRawUsers] = useState<User[]>([]);
@@ -124,6 +125,9 @@ export default function Users() {
     (user) => !existingMemberIds.has(user.id),
   );
 
+  const deleteTargetUsername =
+    usersWithRoles.find((u) => u.id === deleteUserForm.id)?.username ?? "";
+
   return (
     <section className="p-4">
       <SectionHeader
@@ -156,6 +160,7 @@ export default function Users() {
                     danger
                     onClick={() => {
                       setDeleteUserForm({ id: user.id, role: user.role });
+                      setDeleteConfirmUsername("");
                       setIsDeleteUserOpen(true);
                     }}
                   >
@@ -218,16 +223,25 @@ export default function Users() {
       </Modal>
       <Modal
         open={isDeleteUserOpen}
-        title="Delete User"
-        subtitle="Are you sure you want to delete this user? This action cannot be undone."
+        title="Delete User's Membership"
+        subtitle={`Type "${deleteTargetUsername}" to confirm deletion.`}
         onClose={() => setIsDeleteUserOpen(false)}
       >
         <form onSubmit={handleDeleteUserSubmit}>
+          <FormField label="Username">
+            <Input
+              value={deleteConfirmUsername}
+              onChange={(event) => setDeleteConfirmUsername(event.target.value)}
+              placeholder={deleteTargetUsername}
+              autoFocus
+            />
+          </FormField>
           <FormActions
             onCancel={() => setIsDeleteUserOpen(false)}
-            submitLabel="Delete user"
+            submitLabel="Delete membership"
             submittingLabel="Deleting..."
             submitting={isSubmittingDeleteUser}
+            disabled={deleteConfirmUsername !== deleteTargetUsername}
             buttonIcon={<Trash2 size={16} />}
           />
         </form>
