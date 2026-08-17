@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { Pencil, Plus, Trash2 } from "lucide-react";
 import { addDevice, getDevices } from "@/api/devices";
 import type { Device, DeviceFormState } from "@/lib/types";
 import { SectionHeader } from "@/components/section-header";
@@ -9,6 +9,7 @@ import { DataTable } from "@/components/data-table";
 import { Modal } from "@/components/modal";
 import { FormField, Input, FormActions } from "@/components/form";
 import { toastError, toastSuccess } from "@/components/toast";
+import { Button } from "@/components/button";
 
 const emptyDeviceForm: DeviceFormState = {
   hostname: "",
@@ -88,6 +89,21 @@ export default function Devices() {
           { header: "Vendor", render: (device) => device.vendor || "N/A" },
           { header: "Model", render: (device) => device.model || "N/A" },
           { header: "Type", render: (device) => device.type || "N/A" },
+          {
+            header: "Actions",
+            render: () => {
+              return (
+                <div className="flex gap-2">
+                  <Button edit>
+                    <Pencil size={16} />
+                  </Button>
+                  <Button danger>
+                    <Trash2 size={16} />
+                  </Button>
+                </div>
+              );
+            },
+          },
         ]}
       />
       <Modal
