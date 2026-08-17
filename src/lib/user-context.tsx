@@ -1,5 +1,11 @@
 "use client";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import { usersMe } from "@/api/users";
 import type { User } from "@/lib/types";
 
@@ -28,7 +34,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   return (
     <UserContext.Provider
-      value={{ user, username, displayName, preferredName, loading: user === null }}
+      value={{
+        user,
+        username,
+        displayName,
+        preferredName,
+        loading: user === null,
+      }}
     >
       {children}
     </UserContext.Provider>

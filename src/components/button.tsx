@@ -1,6 +1,8 @@
 export function Button({
   children,
   primary = false,
+  danger = false,
+  edit = false,
   onClick,
   type = "button",
   disabled = false,
@@ -10,6 +12,8 @@ export function Button({
   children: React.ReactNode;
   onClick?: () => void;
   primary?: boolean;
+  danger?: boolean;
+  edit?: boolean;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   fullWidth?: boolean;
@@ -25,7 +29,13 @@ export function Button({
         (primary
           ? " border-latte-mauve dark:border-mocha-mauve text-latte-mauve dark:text-mocha-mauve"
           : "") +
-        (!primary
+        (danger
+          ? " border-latte-red dark:border-mocha-red text-latte-red dark:text-mocha-red"
+          : "") +
+        (edit
+          ? " border-latte-blue dark:border-mocha-blue text-latte-blue dark:text-mocha-blue"
+          : "") +
+        (!primary && !danger && !edit
           ? " border-latte-surface-0 dark:border-mocha-surface-0"
           : "") +
         (fullWidth ? " w-full" : "") +

@@ -1,14 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Mail } from "lucide-react";
+import { Mail, Pencil, Trash2 } from "lucide-react";
 import { getUser, getUsers } from "@/api/users";
-import { getAllMembers, inviteUser } from "@/api/members";
+import { deleteMember, getAllMembers, inviteUser } from "@/api/members";
 import type { InviteUserFormState, Member, User } from "@/lib/types";
 import { SectionHeader } from "@/components/section-header";
 import { DataTable } from "@/components/data-table";
 import { Modal } from "@/components/modal";
 import { FormField, Select, FormActions } from "@/components/form";
 import { toastError, toastSuccess } from "@/components/toast";
+import { Button } from "@/components/button";
 
 const emptyInviteUserForm: InviteUserFormState = {
   id: 0,
@@ -19,9 +20,13 @@ const roleOptions = ["owner", "admin", "operator", "viewer"];
 
 export default function Users() {
   const [isInviteUserOpen, setIsInviteUserOpen] = useState(false);
+  const [isDeleteUserOpen, setIsDeleteUserOpen] = useState(false);
   const [inviteUserForm, setInviteUserForm] =
     useState<InviteUserFormState>(emptyInviteUserForm);
+  const [deleteUserForm, setDeleteUserForm] =
+    useState<InviteUserFormState>(emptyInviteUserForm);
   const [isSubmittingInviteUser, setIsSubmittingInviteUser] = useState(false);
+  const [isSubmittingDeleteUser, setIsSubmittingDeleteUser] = useState(false);
 
   const [allUsers, setAllUsers] = useState<User[]>([]);
   const [rawUsers, setRawUsers] = useState<User[]>([]);
@@ -83,6 +88,25 @@ export default function Users() {
     }
   }
 
+  async function handleDeleteUserSubmit(
+    event: React.FormEvent<HTMLFormElement>,
+  ) {
+    event.preventDefault();
+    setIsSubmittingDeleteUser(true);
+
+    try {
+      await deleteMember(deleteUserForm.id);
+      setIsDeleteUserOpen(false);
+      toastSuccess("User deleted successfully");
+      await fetchMembersAndUsers();
+    } catch (error) {
+      toastError(
+        error instanceof Error ? error.message : "Failed to delete user",
+      );
+    } finally {
+      setIsSubmittingDeleteUser(false);
+    }
+  }
   const usersWithRoles = rawUsers
     .map((user) => {
       const member = rawMembers.find((entry) => entry.user_id === user.id);
@@ -120,6 +144,27 @@ export default function Users() {
           { header: "Email", render: (user) => user.email || "N/A" },
           { header: "Username", render: (user) => user.username },
           { header: "Role", render: (user) => user.role },
+          {
+            header: "Actions",
+            render: (user) => {
+              return (
+                <div className="flex gap-2">
+                  <Button edit>
+                    <Pencil size={16} />
+                  </Button>
+                  <Button
+                    danger
+                    onClick={() => {
+                      setDeleteUserForm({ id: user.id, role: user.role });
+                      setIsDeleteUserOpen(true);
+                    }}
+                  >
+                    <Trash2 size={16} />
+                  </Button>
+                </div>
+              );
+            },
+          },
         ]}
       />
       <Modal
@@ -168,6 +213,22 @@ export default function Users() {
             submittingLabel="Inviting..."
             submitting={isSubmittingInviteUser}
             disabled={inviteUserForm.id === 0}
+          />
+        </form>
+      </Modal>
+      <Modal
+        open={isDeleteUserOpen}
+        title="Delete User"
+        subtitle="Are you sure you want to delete this user? This action cannot be undone."
+        onClose={() => setIsDeleteUserOpen(false)}
+      >
+        <form onSubmit={handleDeleteUserSubmit}>
+          <FormActions
+            onCancel={() => setIsDeleteUserOpen(false)}
+            submitLabel="Delete user"
+            submittingLabel="Deleting..."
+            submitting={isSubmittingDeleteUser}
+            buttonIcon={<Trash2 size={16} />}
           />
         </form>
       </Modal>

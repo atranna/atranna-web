@@ -1,6 +1,6 @@
 import type {
-  InputHTMLAttributes,
   ReactNode,
+  InputHTMLAttributes,
   SelectHTMLAttributes,
 } from "react";
 import { Button } from "./button";
@@ -47,6 +47,7 @@ export function FormField({
 }
 
 export function FormActions({
+  buttonIcon = <Plus size={16} />,
   onCancel,
   cancelLabel = "Cancel",
   submitLabel,
@@ -60,6 +61,7 @@ export function FormActions({
   submittingLabel: string;
   submitting: boolean;
   disabled?: boolean;
+  buttonIcon?: ReactNode;
 }) {
   return (
     <>
@@ -68,7 +70,7 @@ export function FormActions({
           {cancelLabel}
         </Button>
         <Button primary type="submit" disabled={submitting || disabled}>
-          <Plus size={18} />
+          {buttonIcon}
           {submitting ? submittingLabel : submitLabel}
         </Button>
       </div>
